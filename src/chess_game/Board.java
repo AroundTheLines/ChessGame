@@ -5,6 +5,8 @@ package chess_game;
 
 public class Board {
 	
+	Box[][] board = new Box[8][8];
+	
 	public Board(){
 		
 	}
