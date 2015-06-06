@@ -38,8 +38,28 @@ public class Piece {
   }
   
   private boolean isKnightChecking() {
-    //Coor
-    return false;//dummmmy code
+    Coordinate c = Board.getPieceCoordinates(this);
+    
+    Coordinate[] array_of_coordinates = new Coordinate[8];
+    
+    array_of_coordinates[0] = new Coordinate(-1, 2);
+    array_of_coordinates[1] = new Coordinate(1, 2);
+    array_of_coordinates[2] = new Coordinate(-1, -2);
+    array_of_coordinates[3] = new Coordinate(1, -2);
+    
+    array_of_coordinates[4] = new Coordinate(-2, 1);
+    array_of_coordinates[5] = new Coordinate(2, 1);
+    array_of_coordinates[6] = new Coordinate(-2, -1);
+    array_of_coordinates[7] = new Coordinate(2, -1);
+    
+    for (Coordinate t : array_of_coordinates)
+    {
+      if (Board.getPiece(Coordinate.add(c, t)).getClass().equals(Knight.class)) {
+        if (!Board.getPiece(Coordinate.add(c, t)).getColor().equals(this.getColor()))
+          return true;
+      }
+    }
+    /*else if loop falls through*/ return false;
   }
   
   private boolean isQueenChecking() {
