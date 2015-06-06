@@ -12,10 +12,4 @@ public class Coordinate {
   this.y+= z.y;
   return this;
  }
- 
- public Coordinate subtractCoordinate(Coordinate z){
-  this.x-= z.x;
-  this.y-= z.y;
-  return this;
- }
 }
