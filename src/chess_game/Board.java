@@ -5,9 +5,20 @@ package chess_game;
 
 public class Board {
 	
-	Box[][] board = new Box[8][8];
+	static Box[][] board = new Box[8][8];
 	
 	public Board(){
 		
+	}
+	
+	public static Coordinate getPieceCoordinates(Piece p){
+		for(int i = 0; i< board.length; i++){
+			for(int j = 0; j<board[i].length;j++){
+				if(board[i][j].getPiece() == p){
+					return board[i][j].getCoordinates();
+				}
+			}
+		}
+		return null;
 	}
 }

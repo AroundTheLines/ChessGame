@@ -1,3 +1,5 @@
+package chess_game;
+
 public class Piece {
   
   private char color;
