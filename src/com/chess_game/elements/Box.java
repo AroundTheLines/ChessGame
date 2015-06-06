@@ -2,18 +2,18 @@ package com.chess_game.elements;
 import com.chess_game.pieces.*;
 
 public class Box {
- boolean isOccupied = false;
+ boolean is_occupied = false;
  Coordinate coords;
  Piece piece;
  
  public Box(boolean isOccupied, char x, char y, Piece piece) {
-  this.isOccupied = isOccupied;
+  this.is_occupied = isOccupied;
   coords = new Coordinate(x,y);
   this.piece = piece;
  }
  
   public Box(boolean isOccupied, char x, char y) {
-  this.isOccupied = isOccupied;
+  this.is_occupied = isOccupied;
   coords = new Coordinate(x,y);
   this.piece = null;
  }
@@ -29,4 +29,8 @@ public class Box {
  public String toString() {
    return String.valueOf(piece);
  } 
+ 
+ public boolean isOccupied(){
+	 return is_occupied;
+ }
 }
