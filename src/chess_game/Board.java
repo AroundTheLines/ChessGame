@@ -21,4 +21,12 @@ public class Board {
 		}
 		return null;
 	}
+	
+	public static Box getBox(Coordinate z){
+		return board[z.y][z.x];
+	}
+	
+	public static Piece getPieceInBox(Coordinate z){
+		return board[z.y][z.x].getPiece();
+	}
 }
