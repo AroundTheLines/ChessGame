@@ -12,6 +12,7 @@ import java.util.HashMap;
 
 public class ChessGame {
   public static HashMap<String, Piece> pieces = new HashMap<>();
+  public static Board game_board = new Board();
   
   public static void main(String[] args) {
     //add kings
