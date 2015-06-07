@@ -9,9 +9,9 @@ public class King extends Piece {
   
   @Override
   public boolean isMoveValid() {
-    if (this.isPlayerKingInCheck()) //if move is made
-      return false;
-    else if (!isMoveInRange())
+//    if (this.isPlayerKingInCheck()) //if move is made
+//      return false;
+    if (!isMoveInRange())
       return false;
     else if (isPathBlocked())
       return false;

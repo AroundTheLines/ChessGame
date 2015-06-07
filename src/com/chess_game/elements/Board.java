@@ -22,15 +22,18 @@ public class Board {
   }
   
   public Board makeHypoMove(Coordinate from, Coordinate to){
-   Board copy = new Board(com.chess_game.ChessGame.game_board);
+   Board copy = new Board(this);
+  
    copy.makeMove(from, to);
+   
    return copy;
   }
   
   public void makeMove(Coordinate from, Coordinate to){
-   Coordinate fromCoords = board[from.y][from.x].getCoordinates();
-   board[to.y][to.x] = board[from.y][from.x];
-   board[from.y][from.x] = new Box(false,fromCoords.x,fromCoords.y);
+//    Coordinate temp = from;
+    this.getBox(to).setPiece(this.getBox(from).getPiece());
+    this.getBox(from).setBoxEmpty();
+    //board[from.x][from.y] = new Box(false,fromCoords.x,fromCoords.y);
   }
   
   public void makeMove(Board another){
@@ -52,12 +55,12 @@ public class Board {
     return this.board;
   }
   
-  public Box getBox(Coordinate z){
-    return board[z.y][z.x];
+  public Box getBox(Coordinate c){
+    return board[c.y][c.x];
   }
   
-  public Piece getPiece(Coordinate z){
-    return board[z.y][z.x].getPiece();
+  public Piece getPiece(Coordinate c){
+    return board[c.y][c.x].getPiece();
   }
   
   public String toString() {

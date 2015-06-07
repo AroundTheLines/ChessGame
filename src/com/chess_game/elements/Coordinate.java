@@ -10,6 +10,11 @@ public class Coordinate {
   this.y = y;
  }
  
+ public Coordinate(Coordinate another) {
+   this.x = another.x;
+   this.y = another.y;
+ }
+ 
  public Coordinate addCoordinate(Coordinate z){
   this.x+= z.x;
   this.y+= z.y;
@@ -18,5 +23,9 @@ public class Coordinate {
  
  public static Coordinate add(Coordinate a, Coordinate b){
   return new Coordinate(a.x + b.x, a.y + b.y);
+ }
+ 
+ public String toString() {
+   return "(" + String.valueOf(this.x) + ", " + String.valueOf(this.y) + ")";
  }
 }

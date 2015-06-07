@@ -9,11 +9,11 @@ public class Knight extends Piece {
   
   @Override
   public boolean isMoveValid() {
-    if (this.getColor() == 'B' && com.chess_game.ChessGame.pieces.get("white_king").isPlayerKingInCheck()) //if move is made
-      return false;
-    else if (this.getColor() == 'W' && com.chess_game.ChessGame.pieces.get("black_king").isPlayerKingInCheck()) //if movie is made
-      return false;
-    else if (!isMoveInRange())
+//    if (this.getColor() == 'B' && com.chess_game.ChessGame.pieces.get("white_king").isPlayerKingInCheck()) //if move is made
+//      return false;
+//    else if (this.getColor() == 'W' && com.chess_game.ChessGame.pieces.get("black_king").isPlayerKingInCheck()) //if movie is made
+//      return false;
+    if (!isMoveInRange())
       return false;
     else if (isTargetBlocked())
       return false;

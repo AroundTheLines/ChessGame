@@ -5,17 +5,18 @@ public class Box {
  boolean is_occupied = false;
  Coordinate coords;
  Piece piece;
+ 
  //just changed the x and y typing to int instead of char
- public Box(boolean isOccupied, int x, int y, Piece piece) {
-  this.is_occupied = isOccupied;
+ public Box(int x, int y, Piece piece) {
+  this.is_occupied = true;
   coords = new Coordinate(x,y);
   this.piece = piece;
  }
  
-  public Box(boolean isOccupied, int x, int y) {
-  this.is_occupied = isOccupied;
-  coords = new Coordinate(x,y);
-  this.piece = null;
+ public Box(int x, int y) {
+   this.is_occupied = false;
+   coords = new Coordinate(x,y);
+   this.piece = com.chess_game.ChessGame.n;
  }
  
  public Coordinate getCoordinates() {
@@ -26,14 +27,21 @@ public class Box {
    return piece;
  }
  
-  public boolean isOccupied(){
-  return is_occupied;
+ public void setPiece(Piece p) {
+   this.piece = p;
+   this.is_occupied = true;
+ }
+ 
+ public boolean isOccupied(){
+   return is_occupied;
+ }
+  
+ public void setBoxEmpty() {
+   this.piece = com.chess_game.ChessGame.n;
+   this.is_occupied = false;
  }
  
  public String toString() {
-   if (piece != null)
-     return String.valueOf(piece);
-   else
-     return ".";
+   return String.valueOf(piece);
  } 
 }

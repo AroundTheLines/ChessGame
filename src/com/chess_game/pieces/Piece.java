@@ -176,22 +176,27 @@ public class Piece {
   
   private boolean isPawnChecking() {
     Coordinate c = com.chess_game.ChessGame.test_board.getPieceCoordinates(this);//get king coordinates in test_board
+    Coordinate t;
     
-    Coordinate t = new Coordinate(1, 1);
-    if (com.chess_game.ChessGame.test_board.getBox(Coordinate.add(c, t)).isOccupied() == true) {
-      if (com.chess_game.ChessGame.test_board.getPiece(Coordinate.add(c, t)).getClass().equals(Pawn.class)) {
-        if (com.chess_game.ChessGame.test_board.getPiece(Coordinate.add(c, t)).getColor() != this.getColor())
-          return true;
+    try {
+      t = new Coordinate(1, 1);
+      if (com.chess_game.ChessGame.test_board.getBox(Coordinate.add(c, t)).isOccupied() == true) {
+        if (com.chess_game.ChessGame.test_board.getPiece(Coordinate.add(c, t)).getClass().equals(Pawn.class)) {
+          if (com.chess_game.ChessGame.test_board.getPiece(Coordinate.add(c, t)).getColor() != this.getColor())
+            return true;
+        }
       }
-    }
+    } catch (Exception e) {}
     
-    t = new Coordinate(-1, 1);
-    if (com.chess_game.ChessGame.test_board.getBox(Coordinate.add(c, t)).isOccupied() == true) {
-      if (com.chess_game.ChessGame.test_board.getPiece(Coordinate.add(c, t)).getClass().equals(Pawn.class)) {
-        if (com.chess_game.ChessGame.test_board.getPiece(Coordinate.add(c, t)).getColor() != this.getColor())
-          return true;
+    try {
+      t = new Coordinate(-1, 1);
+      if (com.chess_game.ChessGame.test_board.getBox(Coordinate.add(c, t)).isOccupied() == true) {
+        if (com.chess_game.ChessGame.test_board.getPiece(Coordinate.add(c, t)).getClass().equals(Pawn.class)) {
+          if (com.chess_game.ChessGame.test_board.getPiece(Coordinate.add(c, t)).getColor() != this.getColor())
+            return true;
+        }
       }
-    }
+    } catch (Exception e) {}
     
     /*if nothing returned yet, by default*/return false;
   }
@@ -214,12 +219,14 @@ public class Piece {
     
     for (Coordinate t : array_of_coordinates)
     {
-      if (com.chess_game.ChessGame.test_board.getBox(Coordinate.add(c, t)).isOccupied() == true) {
-        if (com.chess_game.ChessGame.test_board.getPiece(Coordinate.add(c, t)).getClass().equals(Knight.class)) {
-          if (com.chess_game.ChessGame.test_board.getPiece(Coordinate.add(c, t)).getColor() != this.getColor())
-            return true;
+      try {
+        if (com.chess_game.ChessGame.test_board.getBox(Coordinate.add(c, t)).isOccupied() == true) {
+          if (com.chess_game.ChessGame.test_board.getPiece(Coordinate.add(c, t)).getClass().equals(Knight.class)) {
+            if (com.chess_game.ChessGame.test_board.getPiece(Coordinate.add(c, t)).getColor() != this.getColor())
+              return true;
+          }
         }
-      }
+      } catch (Exception e) {}
     }
     /*if loop falls through*/ return false;
   }
