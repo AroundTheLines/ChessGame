@@ -62,15 +62,19 @@ public class Board {
   
   public String toString() {
     String printable = "";
+    int i = 8;
     
     for (Box[] boxes : board) {
+      printable += String.valueOf(i)+ "\t";
       
       for (Box box : boxes)
           printable += String.valueOf(box) + "\t";
       
-      printable += "\n";
+      printable += "\n\n";
+      i -= 1;
     }
     
+    printable += "\ta\tb\tc\td\te\tf\tg\th\t";
     return printable;
   }
 }
