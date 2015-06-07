@@ -119,7 +119,8 @@ public class ChessGame {
     do {
       test_board = new Board(game_board);
       c = getMove(1);
-      test_board = game_board.makeHypoMove(c[0], c[1]);
+      if (game_board.getBox(c[0]).getPiece().getColor() == 'W')
+        test_board = game_board.makeHypoMove(c[0], c[1]);
     }
     while (test_board.getPiece(c[1]).getColor() != 'W' || !test_board.getPiece(c[1]).isMoveValid());
     
@@ -140,7 +141,8 @@ public class ChessGame {
     do {
       test_board = new Board(game_board);
       c = getMove(2);
-      test_board = game_board.makeHypoMove(c[0], c[1]);
+      if (game_board.getBox(c[0]).getPiece().getColor() == 'B')
+        test_board = game_board.makeHypoMove(c[0], c[1]);
 //      System.out.println(test_board);
     }
     while (test_board.getPiece(c[1]).getColor() != 'B' || !test_board.getPiece(c[1]).isMoveValid());
