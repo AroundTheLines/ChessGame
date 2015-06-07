@@ -7,6 +7,7 @@ public class Bishop extends Piece {
     super(color);
   }
   
+  @Override
   public boolean isMoveValid() {
     if (this.getColor() == 'B' && com.chess_game.ChessGame.pieces.get("white_king").isPlayerKingInCheck()) //if move is made
       return false;
@@ -20,9 +21,13 @@ public class Bishop extends Piece {
       return true;
   }
   
-  public boolean isMoveInRange() {return true;}
+  public boolean isMoveInRange() {
+    
+    return true;}
   
-  public boolean isPathBlocked() {return false;}
+  public boolean isPathBlocked() {
+    
+    return false;}
   
   @Override
   public String toString() {

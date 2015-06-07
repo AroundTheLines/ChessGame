@@ -13,8 +13,14 @@ import java.util.HashMap;
 public class ChessGame {
   public static HashMap<String, Piece> pieces = new HashMap<>();
   public static Board game_board = new Board();
+  public static Board test_board;
   
   public static void main(String[] args) {
+    addPieces();
+    makeBoard();
+  }
+  
+  public static void addPieces() {
     //add kings
     pieces.put("white_king", new King('W'));
     pieces.put ("black_king", new King('B'));
@@ -46,5 +52,33 @@ public class ChessGame {
       pieces.put("white_pawn" + String.valueOf(i), new Pawn('W'));
     for (int i = 0; i < 8; i++)
       pieces.put("black_pawn" + String.valueOf(i), new Pawn('B'));
+  }
+  
+  public static void makeBoard() {}
+  
+  public static void Player1Turn() {
+    Coordinate[] c;
+    
+    do {
+      c = getMove();
+      test_board = new Board(game_board).makeHypoMove(c[0], c[1]);
+    }
+    while (game_board.getPiece(c[0]).getColor() != 'W' && !game_board.getPiece(c[0]).isMoveValid());
+  }
+  
+  public static void Player2Turn() {
+    Coordinate[] c;
+    
+    do {
+      c = getMove();
+      test_board = new Board(game_board).makeHypoMove(c[0], c[1]);
+    }
+    while (game_board.getPiece(c[0]).getColor() != 'B' && !game_board.getPiece(c[0]).isMoveValid());
+  }
+  
+  public static Coordinate[] getMove()
+  {
+    Coordinate[] c = {new Coordinate(1,2), new Coordinate(1,1)};//dummy code
+    return c;
   }
 }

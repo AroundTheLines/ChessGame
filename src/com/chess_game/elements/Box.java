@@ -23,14 +23,17 @@ public class Box {
  }
  
  public Piece getPiece() {
-  return piece;
+   return piece;
+ }
+ 
+  public boolean isOccupied(){
+  return is_occupied;
  }
  
  public String toString() {
-   return String.valueOf(piece);
+   if (piece != null)
+     return String.valueOf(piece);
+   else
+     return ".";
  } 
- 
- public boolean isOccupied(){
-	 return is_occupied;
- }
 }

@@ -7,8 +7,9 @@ public class King extends Piece {
     super(color);
   }
   
+  @Override
   public boolean isMoveValid() {
-    if (isPlayerKingInCheck()) //if move is made
+    if (this.isPlayerKingInCheck()) //if move is made
       return false;
     else if (!isMoveInRange())
       return false;

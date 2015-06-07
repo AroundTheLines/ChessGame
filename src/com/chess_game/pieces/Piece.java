@@ -39,7 +39,7 @@ public class Piece {
   }
   
   private boolean isKnightChecking() {
-    Coordinate c = Board.getPieceCoordinates(this);
+    Coordinate c = com.chess_game.ChessGame.test_board.getPieceCoordinates(this);//get king coordinates in test_board
     
     Coordinate[] array_of_coordinates = new Coordinate[8];
     
@@ -56,9 +56,9 @@ public class Piece {
     for (Coordinate t : array_of_coordinates)
     {
       try {
-        if (Board.getBox(Coordinate.add(c, t)).isOccupied() == true) {
-          if (Board.getPiece(Coordinate.add(c, t)).getClass().equals(Knight.class)) {
-            if (Board.getPiece(Coordinate.add(c, t)).getColor() != this.getColor())
+        if (com.chess_game.ChessGame.test_board.getBox(Coordinate.add(c, t)).isOccupied() == true) {
+          if (com.chess_game.ChessGame.test_board.getPiece(Coordinate.add(c, t)).getClass().equals(Knight.class)) {
+            if (com.chess_game.ChessGame.test_board.getPiece(Coordinate.add(c, t)).getColor() != this.getColor())
               return true;
           }
         }
@@ -68,7 +68,7 @@ public class Piece {
   }
   
   private boolean isQueenChecking() {
-    Coordinate c = Board.getPieceCoordinates(this);
+    Coordinate c = com.chess_game.ChessGame.test_board.getPieceCoordinates(this);//get king coordinates in test_board
     Coordinate t = c;
     
     Coordinate[] array_of_coordinates = new Coordinate[8];
@@ -88,11 +88,11 @@ public class Piece {
         while (true) {
           t = Coordinate.add(t, s);
           
-          if (Board.getBox(Coordinate.add(c, t)).isOccupied() == true) {
-            if (Board.getPiece(Coordinate.add(c, t)).getColor() != this.getColor()) {
+          if (com.chess_game.ChessGame.test_board.getBox(Coordinate.add(c, t)).isOccupied() == true) {
+            if (com.chess_game.ChessGame.test_board.getPiece(Coordinate.add(c, t)).getColor() != this.getColor()) {
               break; //if broken, then no queen in current direction checking
             }
-            if (Board.getPiece(Coordinate.add(c, t)).getClass().equals(Queen.class))
+            if (com.chess_game.ChessGame.test_board.getPiece(Coordinate.add(c, t)).getClass().equals(Queen.class))
               return true;
             else
               break; //if exception caught, then no queen in current direction checking
@@ -107,7 +107,7 @@ public class Piece {
   }
   
   private boolean isRookChecking() {
-    Coordinate c = Board.getPieceCoordinates(this);
+    Coordinate c = com.chess_game.ChessGame.test_board.getPieceCoordinates(this);//get king coordinates in test_board
     Coordinate t = c;
     
     Coordinate[] array_of_coordinates = new Coordinate[8];
@@ -122,11 +122,11 @@ public class Piece {
         while (true) {
           t = Coordinate.add(t, s);
           
-          if (Board.getBox(Coordinate.add(c, t)).isOccupied() == true) {
-            if (Board.getPiece(Coordinate.add(c, t)).getColor()!= this.getColor()) {
+          if (com.chess_game.ChessGame.test_board.getBox(Coordinate.add(c, t)).isOccupied() == true) {
+            if (com.chess_game.ChessGame.test_board.getPiece(Coordinate.add(c, t)).getColor()!= this.getColor()) {
               break; //if broken, then no queen in current direction checking
             }
-            if (Board.getPiece(Coordinate.add(c, t)).getClass().equals(Queen.class))
+            if (com.chess_game.ChessGame.test_board.getPiece(Coordinate.add(c, t)).getClass().equals(Queen.class))
               return true;
             else
               break; //if exception caught, then no queen in current direction checking
@@ -141,7 +141,7 @@ public class Piece {
   }
   
   private boolean isBishopChecking() {
-    Coordinate c = Board.getPieceCoordinates(this);
+    Coordinate c = com.chess_game.ChessGame.test_board.getPieceCoordinates(this);//get king coordinates in test_board
     Coordinate t = c;
     
     Coordinate[] array_of_coordinates = new Coordinate[8];
@@ -156,11 +156,11 @@ public class Piece {
         while (true) {
           t = Coordinate.add(t, s);
           
-          if (Board.getBox(Coordinate.add(c, t)).isOccupied() == true) {
-            if (Board.getPiece(Coordinate.add(c, t)).getColor() != this.getColor()) {
+          if (com.chess_game.ChessGame.test_board.getBox(Coordinate.add(c, t)).isOccupied() == true) {
+            if (com.chess_game.ChessGame.test_board.getPiece(Coordinate.add(c, t)).getColor() != this.getColor()) {
               break; //if broken, then no queen in current direction checking
             }
-            if (Board.getPiece(Coordinate.add(c, t)).getClass().equals(Queen.class))
+            if (com.chess_game.ChessGame.test_board.getPiece(Coordinate.add(c, t)).getClass().equals(Queen.class))
               return true;
             else
               break; //if exception caught, then no queen in current direction checking
@@ -175,20 +175,20 @@ public class Piece {
   }
   
   private boolean isPawnChecking() {
-    Coordinate c = Board.getPieceCoordinates(this);
+    Coordinate c = com.chess_game.ChessGame.test_board.getPieceCoordinates(this);//get king coordinates in test_board
     
     Coordinate t = new Coordinate(1, 1);
-    if (Board.getBox(Coordinate.add(c, t)).isOccupied() == true) {
-      if (Board.getPiece(Coordinate.add(c, t)).getClass().equals(Pawn.class)) {
-        if (Board.getPiece(Coordinate.add(c, t)).getColor() != this.getColor())
+    if (com.chess_game.ChessGame.test_board.getBox(Coordinate.add(c, t)).isOccupied() == true) {
+      if (com.chess_game.ChessGame.test_board.getPiece(Coordinate.add(c, t)).getClass().equals(Pawn.class)) {
+        if (com.chess_game.ChessGame.test_board.getPiece(Coordinate.add(c, t)).getColor() != this.getColor())
           return true;
       }
     }
     
     t = new Coordinate(-1, 1);
-    if (Board.getBox(Coordinate.add(c, t)).isOccupied() == true) {
-      if (Board.getPiece(Coordinate.add(c, t)).getClass().equals(Pawn.class)) {
-        if (Board.getPiece(Coordinate.add(c, t)).getColor() != this.getColor())
+    if (com.chess_game.ChessGame.test_board.getBox(Coordinate.add(c, t)).isOccupied() == true) {
+      if (com.chess_game.ChessGame.test_board.getPiece(Coordinate.add(c, t)).getClass().equals(Pawn.class)) {
+        if (com.chess_game.ChessGame.test_board.getPiece(Coordinate.add(c, t)).getColor() != this.getColor())
           return true;
       }
     }
@@ -197,7 +197,7 @@ public class Piece {
   }
   
   private boolean isKingChecking() {
-    Coordinate c = Board.getPieceCoordinates(this);
+    Coordinate c = com.chess_game.ChessGame.test_board.getPieceCoordinates(this);//get king coordinates in test_board
     
     Coordinate[] array_of_coordinates = new Coordinate[8];
     
@@ -214,9 +214,9 @@ public class Piece {
     
     for (Coordinate t : array_of_coordinates)
     {
-      if (Board.getBox(Coordinate.add(c, t)).isOccupied() == true) {
-        if (Board.getPiece(Coordinate.add(c, t)).getClass().equals(Knight.class)) {
-          if (Board.getPiece(Coordinate.add(c, t)).getColor() != this.getColor())
+      if (com.chess_game.ChessGame.test_board.getBox(Coordinate.add(c, t)).isOccupied() == true) {
+        if (com.chess_game.ChessGame.test_board.getPiece(Coordinate.add(c, t)).getClass().equals(Knight.class)) {
+          if (com.chess_game.ChessGame.test_board.getPiece(Coordinate.add(c, t)).getColor() != this.getColor())
             return true;
         }
       }
@@ -224,13 +224,11 @@ public class Piece {
     /*if loop falls through*/ return false;
   }
   
-  public String toString() {
-    return "piece type not specified";
+  public boolean isMoveValid() {
+    return false;
   }
   
-  public Board makeHypoMove(Coordinate from, Coordinate to){
-	  Board copy = com.chess_game.ChessGame.game_board;
-	  copy.makeMove(from, to);
-	  return copy;
+  public String toString() {
+    return "piece type not specified";
   }
 }

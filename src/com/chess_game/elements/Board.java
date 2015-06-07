@@ -6,15 +6,40 @@ import com.chess_game.pieces.*;
 
 public class Board {
   
-  static Box[][] board = new Box[8][8];
+  private Box[][] board;
   
   public Board(){
-    
+    this.board  = new Box[8][8];
   }
   
-  public static Coordinate getPieceCoordinates(Piece p){
-    for(int i = 0; i< board.length; i++){
-      for(int j = 0; j<board[i].length;j++){
+  public Board(Box[][] board) {
+    this.board = board;
+  }
+  
+  //copy constructor
+  public Board(Board another) {
+    this.board = another.board;
+  }
+  
+  public Board makeHypoMove(Coordinate from, Coordinate to){
+   Board copy = new Board(com.chess_game.ChessGame.game_board);
+   copy.makeMove(from, to);
+   return copy;
+  }
+  
+  public void makeMove(Coordinate from, Coordinate to){
+   Coordinate fromCoords = board[from.y][from.x].getCoordinates();
+   board[to.y][to.x] = board[from.y][from.x];
+   board[from.y][from.x] = new Box(false,fromCoords.x,fromCoords.y);
+  }
+  
+  public void makeMove(Board another){
+   this.board = another.board;
+  }
+  
+  public Coordinate getPieceCoordinates(Piece p){
+    for(int i = 0; i < board.length; i++){
+      for(int j = 0; j < board[i].length; j++){
         if(board[i][j].getPiece() == p){
           return board[i][j].getCoordinates();
         }
@@ -23,11 +48,15 @@ public class Board {
     return null;
   }
   
-  public static Box getBox(Coordinate z){
+  public Box[][] getBoard() {
+    return this.board;
+  }
+  
+  public Box getBox(Coordinate z){
     return board[z.y][z.x];
   }
   
-  public static Piece getPiece(Coordinate z){
+  public Piece getPiece(Coordinate z){
     return board[z.y][z.x].getPiece();
   }
   
@@ -35,21 +64,13 @@ public class Board {
     String printable = "";
     
     for (Box[] boxes : board) {
-      for (Box box : boxes) {
-        if (box.getPiece() != null)
-          printable += String.valueOf(box) + "/t";
-        else       
-          printable += "./t";
-      }
-      printable += "/n";
+      
+      for (Box box : boxes)
+          printable += String.valueOf(box) + "\t";
+      
+      printable += "\n";
     }
     
     return printable;
-  }
-  
-  public void makeMove(Coordinate from, Coordinate to){
-	  Coordinate fromCoords = board[from.y][from.x].getCoordinates();
-	  board[to.y][to.x] = board[from.y][from.x];
-	  board[from.y][from.x] = new Box(false,fromCoords.x,fromCoords.y);
   }
 }
