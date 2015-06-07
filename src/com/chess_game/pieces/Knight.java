@@ -22,6 +22,7 @@ public class Knight extends Piece {
   
   public boolean isTargetBlocked() {return false;}
   
+  @Override
   public String toString() {
     return getColor() + "N";
   }

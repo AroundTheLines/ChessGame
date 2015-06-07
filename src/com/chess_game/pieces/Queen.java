@@ -22,6 +22,7 @@ public class Queen extends Piece {
   
   public boolean isPathBlocked() {return false;}
   
+  @Override
   public String toString() {
     return getColor() + "Q";
   }
