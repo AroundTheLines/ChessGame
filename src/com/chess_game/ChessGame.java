@@ -114,25 +114,31 @@ public class ChessGame {
   }
   
   public static boolean player1Turn() {
-    Coordinate[] c;
-   
-    do {
-      test_board = new Board(game_board);
-      c = getMove(1);
-      if (game_board.getBox(c[0]).getPiece().getColor() == 'W')
-        test_board = game_board.makeHypoMove(c[0], c[1]);
+    try {
+      Coordinate[] c;
+      
+      do {
+        test_board = new Board(game_board);
+        c = getMove(1);
+        if (game_board.getBox(c[0]).getPiece().getColor() == 'W')
+          test_board = game_board.makeHypoMove(c[0], c[1]);
+      }
+      
+      while (test_board.getPiece(c[1]).getColor() != 'W' || !test_board.getPiece(c[1]).isMoveValid());
+      
+      game_board.getBox(c[1]).getPiece().setPieceDead();
+      game_board = new Board(test_board);
+      
+      if (!pieces.get("black_king").isPieceInGame()) {
+        System.out.println("Player 1 Wins");
+        return true;
+      }
+      else
+        return false;
+    } catch (Exception e) {
+      System.out.println("Move is invalid");
+      return player1Turn();
     }
-    while (test_board.getPiece(c[1]).getColor() != 'W' || !test_board.getPiece(c[1]).isMoveValid());
-    
-    game_board.getBox(c[1]).getPiece().setPieceDead();
-    game_board = new Board(test_board);
-    
-    if (!pieces.get("black_king").isPieceInGame()) {
-      System.out.println("Player 1 Wins");
-      return true;
-    }
-    else
-      return false;
   }
   
   public static boolean player2Turn() {
