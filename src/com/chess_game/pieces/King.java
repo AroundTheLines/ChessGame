@@ -8,7 +8,7 @@ public class King extends Piece {
   }
   
   public boolean isMoveValid() {
-    if (isPlayerKingInCheck()) //if the move is made
+    if (isPlayerKingInCheck()) //if move is made
       return false;
     else if (!isMoveInRange())
       return false;

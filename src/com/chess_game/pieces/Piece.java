@@ -13,8 +13,8 @@ public class Piece {
     this.inGame = true;
   }
   
-  public String getColor() {
-    return String.valueOf(color);
+  public char getColor() {
+    return this.color;
   }
   
   public boolean isPieceInGame() {return this.inGame;}
@@ -58,7 +58,7 @@ public class Piece {
       try {
         if (Board.getBox(Coordinate.add(c, t)).isOccupied() == true) {
           if (Board.getPiece(Coordinate.add(c, t)).getClass().equals(Knight.class)) {
-            if (!Board.getPiece(Coordinate.add(c, t)).getColor().equals(this.getColor()))
+            if (Board.getPiece(Coordinate.add(c, t)).getColor() != this.getColor())
               return true;
           }
         }
@@ -89,7 +89,7 @@ public class Piece {
           t = Coordinate.add(t, s);
           
           if (Board.getBox(Coordinate.add(c, t)).isOccupied() == true) {
-            if (Board.getPiece(Coordinate.add(c, t)).getColor().equals(this.getColor())) {
+            if (Board.getPiece(Coordinate.add(c, t)).getColor() != this.getColor()) {
               break; //if broken, then no queen in current direction checking
             }
             if (Board.getPiece(Coordinate.add(c, t)).getClass().equals(Queen.class))
@@ -123,7 +123,7 @@ public class Piece {
           t = Coordinate.add(t, s);
           
           if (Board.getBox(Coordinate.add(c, t)).isOccupied() == true) {
-            if (Board.getPiece(Coordinate.add(c, t)).getColor().equals(this.getColor())) {
+            if (Board.getPiece(Coordinate.add(c, t)).getColor()!= this.getColor()) {
               break; //if broken, then no queen in current direction checking
             }
             if (Board.getPiece(Coordinate.add(c, t)).getClass().equals(Queen.class))
@@ -157,7 +157,7 @@ public class Piece {
           t = Coordinate.add(t, s);
           
           if (Board.getBox(Coordinate.add(c, t)).isOccupied() == true) {
-            if (Board.getPiece(Coordinate.add(c, t)).getColor().equals(this.getColor())) {
+            if (Board.getPiece(Coordinate.add(c, t)).getColor() != this.getColor()) {
               break; //if broken, then no queen in current direction checking
             }
             if (Board.getPiece(Coordinate.add(c, t)).getClass().equals(Queen.class))
@@ -180,7 +180,7 @@ public class Piece {
     Coordinate t = new Coordinate(1, 1);
     if (Board.getBox(Coordinate.add(c, t)).isOccupied() == true) {
       if (Board.getPiece(Coordinate.add(c, t)).getClass().equals(Pawn.class)) {
-        if (!Board.getPiece(Coordinate.add(c, t)).getColor().equals(this.getColor()))
+        if (Board.getPiece(Coordinate.add(c, t)).getColor() != this.getColor())
           return true;
       }
     }
@@ -188,7 +188,7 @@ public class Piece {
     t = new Coordinate(-1, 1);
     if (Board.getBox(Coordinate.add(c, t)).isOccupied() == true) {
       if (Board.getPiece(Coordinate.add(c, t)).getClass().equals(Pawn.class)) {
-        if (!Board.getPiece(Coordinate.add(c, t)).getColor().equals(this.getColor()))
+        if (Board.getPiece(Coordinate.add(c, t)).getColor() != this.getColor())
           return true;
       }
     }
@@ -216,7 +216,7 @@ public class Piece {
     {
       if (Board.getBox(Coordinate.add(c, t)).isOccupied() == true) {
         if (Board.getPiece(Coordinate.add(c, t)).getClass().equals(Knight.class)) {
-          if (!Board.getPiece(Coordinate.add(c, t)).getColor().equals(this.getColor()))
+          if (Board.getPiece(Coordinate.add(c, t)).getColor() != this.getColor())
             return true;
         }
       }

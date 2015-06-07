@@ -8,7 +8,9 @@ public class Queen extends Piece {
   }
   
    public boolean isMoveValid() {
-    if (isPlayerKingInCheck()) //if the move is made
+    if (this.getColor() == 'B' && com.chess_game.ChessGame.pieces.get("white_king").isPlayerKingInCheck()) //if move is made
+      return false;
+    else if (this.getColor() == 'W' && com.chess_game.ChessGame.pieces.get("black_king").isPlayerKingInCheck()) //if movie is made
       return false;
     else if (!isMoveInRange())
       return false;

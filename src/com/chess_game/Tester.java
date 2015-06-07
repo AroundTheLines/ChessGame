@@ -4,11 +4,9 @@ import com.chess_game.elements.*;
 
 public class Tester {
   public static void main(String[] args) { 
-    Piece p;
     King k = new King('W');
-    p = k;
-    isPiece(p);
-    System.out.println(String.valueOf(p));
+    //isPiece();
+    System.out.println(String.valueOf(k));
   }
   
   public static void isPiece (Piece p) {
