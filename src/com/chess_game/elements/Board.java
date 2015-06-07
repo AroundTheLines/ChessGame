@@ -46,4 +46,10 @@ public class Board {
     
     return printable;
   }
+  
+  public void makeMove(Coordinate from, Coordinate to){
+	  Coordinate fromCoords = board[from.y][from.x].getCoordinates();
+	  board[to.y][to.x] = board[from.y][from.x];
+	  board[from.y][from.x] = new Box(false,fromCoords.x,fromCoords.y);
+  }
 }

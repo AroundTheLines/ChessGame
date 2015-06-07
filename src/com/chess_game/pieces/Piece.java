@@ -227,4 +227,10 @@ public class Piece {
   public String toString() {
     return "piece type not specified";
   }
+  
+  public Board makeHypoMove(Coordinate from, Coordinate to){
+	  Board copy = com.chess_game.ChessGame.game_board;
+	  copy.makeMove(from, to);
+	  return copy;
+  }
 }

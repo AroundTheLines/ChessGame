@@ -5,14 +5,14 @@ public class Box {
  boolean is_occupied = false;
  Coordinate coords;
  Piece piece;
- 
- public Box(boolean isOccupied, char x, char y, Piece piece) {
+ //just changed the x and y typing to int instead of char
+ public Box(boolean isOccupied, int x, int y, Piece piece) {
   this.is_occupied = isOccupied;
   coords = new Coordinate(x,y);
   this.piece = piece;
  }
  
-  public Box(boolean isOccupied, char x, char y) {
+  public Box(boolean isOccupied, int x, int y) {
   this.is_occupied = isOccupied;
   coords = new Coordinate(x,y);
   this.piece = null;
