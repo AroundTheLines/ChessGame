@@ -17,6 +17,8 @@ public class Bishop extends Piece {
       return false;
     else if (isPathBlocked())
       return false;
+    else if (isTargetBlocked())
+      return false;
     else
       return true;
   }
@@ -28,6 +30,8 @@ public class Bishop extends Piece {
   public boolean isPathBlocked() {
     
     return false;}
+  
+  public boolean isTargetBlocked() {return false;}
   
   @Override
   public String toString() {

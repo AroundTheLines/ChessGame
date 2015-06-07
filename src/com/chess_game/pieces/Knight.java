@@ -21,7 +21,7 @@ public class Knight extends Piece {
       return true;
   }
   
-   public boolean isMoveInRange() {return true;}
+  public boolean isMoveInRange() {return true;}
   
   public boolean isTargetBlocked() {return false;}
   

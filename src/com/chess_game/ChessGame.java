@@ -172,15 +172,14 @@ public class ChessGame {
       System.exit(0);
     else if (move.toLowerCase().equals("forfeit")) {
       System.out.println("Current player has forfeited");
-      System.exit(0);
+      System.out.println("Player " + 2/i + " wins");
+      System.exit(0);//change to end without killing
     }
     //else
     
     try {
       Coordinate[] c = {new Coordinate(x_coord.get(move.charAt(0)) - 1, 8 - Integer.parseInt(move.substring(1, 2))), 
         new Coordinate(x_coord.get(move.charAt(2)) - 1, 8 - Integer.parseInt(move.substring(3, 4)))};
-      
-      //System.out.println ("c[0] = " + c[0] + ", c[1] = " + c[1]);//debug
       return c;
       
     } catch (Exception e) {
