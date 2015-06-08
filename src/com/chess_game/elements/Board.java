@@ -30,10 +30,12 @@ public class Board {
   }
   
   public void makeMove(Coordinate from, Coordinate to){
-//    Coordinate temp = from;
-    this.getBox(to).setPiece(this.getBox(from).getPiece());
-    this.getBox(from).setBoxEmpty();
-    //board[from.x][from.y] = new Box(false,fromCoords.x,fromCoords.y);
+//    try {
+      this.getBox(to).setPiece(this.getBox(from).getPiece());
+      this.getBox(from).setBoxEmpty();
+//    } catch (Exception e) {
+//      System.out.println("Invalid move");
+//    }
   }
   
   public void makeMove(Board another){

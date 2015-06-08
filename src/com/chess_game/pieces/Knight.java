@@ -7,23 +7,21 @@ public class Knight extends Piece {
     super(color);
   }
   
-  @Override
-  public boolean isMoveValid() {
-//    if (this.getColor() == 'B' && com.chess_game.ChessGame.pieces.get("white_king").isPlayerKingInCheck()) //if move is made
+//  @Override
+//  public boolean isMoveValid(Coordinate c1, Coordinate c2) {
+////    if (this.getColor() == 'B' && com.chess_game.ChessGame.pieces.get("white_king").isPlayerKingInCheck()) //if move is made
+////      return false;
+////    else if (this.getColor() == 'W' && com.chess_game.ChessGame.pieces.get("black_king").isPlayerKingInCheck()) //if movie is made
+////      return false;
+//    if (!isMoveInRange(c1, c2))
 //      return false;
-//    else if (this.getColor() == 'W' && com.chess_game.ChessGame.pieces.get("black_king").isPlayerKingInCheck()) //if movie is made
+//    else if (isTargetBlocked(c2))
 //      return false;
-    if (!isMoveInRange())
-      return false;
-    else if (isTargetBlocked())
-      return false;
-    else
-      return true;
-  }
+//    else
+//      return true;
+//  }
   
-  public boolean isMoveInRange() {return true;}
-  
-  public boolean isTargetBlocked() {return false;}
+//  public boolean isMoveInRange(Coordinate c1, Coordinate c2) {return true;}
   
   @Override
   public String toString() {

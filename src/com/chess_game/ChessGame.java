@@ -116,18 +116,24 @@ public class ChessGame {
   public static boolean player1Turn() {
     try {
       Coordinate[] c;
+      Boolean b = true;
       
       do {
-        test_board = new Board(game_board);
+//        test_board = new Board(game_board);
         c = getMove(1);
-        if (game_board.getBox(c[0]).getPiece().getColor() == 'W')
-          test_board = game_board.makeHypoMove(c[0], c[1]);
-      }
+        
+        if (game_board.getPiece(c[0]).getColor() == 'W' && game_board.getPiece(c[0]).isMoveValid(c[0], c[1])) {
+          b = false;
+//          test_board = game_board.makeHypoMove(c[0], c[1]);
+          game_board.getBox(c[1]).getPiece().setPieceDead();
+          game_board.makeMove(c[0], c[1]);
+        }
+        
+//        System.out.println(test_board.getPiece(c[1]).isMoveValid(c[0], c[1]));//debug
+      } while (b);//|| !test_board.getPiece(c[1]).isMoveValid());
       
-      while (test_board.getPiece(c[1]).getColor() != 'W' || !test_board.getPiece(c[1]).isMoveValid());
-      
-      game_board.getBox(c[1]).getPiece().setPieceDead();
-      game_board = new Board(test_board);
+//      game_board.getBox(c[1]).getPiece().setPieceDead();
+//      game_board = new Board(test_board);
       
       if (!pieces.get("black_king").isPieceInGame()) {
         System.out.println("Player 1 Wins");
@@ -135,7 +141,7 @@ public class ChessGame {
       }
       else
         return false;
-    } catch (Exception e) {
+    } catch (ArrayIndexOutOfBoundsException e) {
       System.out.println("Move is invalid");
       return player1Turn();
     }
@@ -151,7 +157,7 @@ public class ChessGame {
         test_board = game_board.makeHypoMove(c[0], c[1]);
 //      System.out.println(test_board);
     }
-    while (test_board.getPiece(c[1]).getColor() != 'B' || !test_board.getPiece(c[1]).isMoveValid());
+    while (test_board.getPiece(c[1]).getColor() != 'B');// || !test_board.getPiece(c[1]).isMoveValid());
     
     game_board.getBox(c[1]).getPiece().setPieceDead();
     game_board = new Board(test_board);
@@ -173,7 +179,7 @@ public class ChessGame {
     else if (move.toLowerCase().equals("forfeit")) {
       System.out.println("Current player has forfeited");
       System.out.println("Player " + 2/i + " wins");
-      System.exit(0);//change to end without killing
+      System.exit(0);//change to end without killinga1
     }
     //else
     
@@ -184,9 +190,7 @@ public class ChessGame {
       
     } catch (Exception e) {
       System.out.println("move is not in range");
-      getMove(i);
+      return getMove(i);
     }
-    
-    return null;
   }
 }

@@ -15,14 +15,18 @@ public class Coordinate {
    this.y = another.y;
  }
  
- public Coordinate addCoordinate(Coordinate z){
-  this.x+= z.x;
-  this.y+= z.y;
+ public Coordinate addCoordinate(Coordinate c){
+  this.x += c.x;
+  this.y += c.y;
   return this;
  }
  
  public static Coordinate add(Coordinate a, Coordinate b){
   return new Coordinate(a.x + b.x, a.y + b.y);
+ }
+ 
+ public static Coordinate substract(Coordinate a, Coordinate b) {
+   return new Coordinate(b.x - a.x, b.y - a.y);
  }
  
  public String toString() {
