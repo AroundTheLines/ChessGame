@@ -10,10 +10,6 @@ public class NullPiece extends com.chess_game.pieces.Piece {
     color = 'n';
   }
   
-//  public boolean isMoveValid() {
-//    return false;
-//  }
-  
   @Override
   public boolean isMoveValid(Coordinate c1, Coordinate c2) {
     return false;

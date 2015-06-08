@@ -21,218 +21,7 @@ public class Piece {
   
   public void setPieceDead() {this.inGame = false;}
   
-//  public boolean isPlayerKingInCheck() {
-//    if (isKnightChecking())
-//      return true;
-//    else if (isQueenChecking())
-//      return true;
-//    else if (isRookChecking())
-//      return true;
-//    else if (isBishopChecking())
-//      return true;
-//    else if (isPawnChecking())
-//      return true;
-//    else if (isKingChecking())
-//      return true;
-//    else
-//      return false;
-//  }
-  
-//  private boolean isKnightChecking() {
-//    Coordinate c = com.chess_game.ChessGame.test_board.getPieceCoordinates(this);//get king coordinates in test_board
-    
-//    Coordinate[] array_of_coordinates = new Coordinate[8];
-    
-//    array_of_coordinates[0] = new Coordinate(-1, 2);
-//    array_of_coordinates[1] = new Coordinate(1, 2);
-//    array_of_coordinates[2] = new Coordinate(-1, -2);
-//    array_of_coordinates[3] = new Coordinate(1, -2);
-    
-//    array_of_coordinates[4] = new Coordinate(-2, 1);
-//    array_of_coordinates[5] = new Coordinate(2, 1);
-//    array_of_coordinates[6] = new Coordinate(-2, -1);
-//    array_of_coordinates[7] = new Coordinate(2, -1);
-    
-//    for (Coordinate t : array_of_coordinates)
-//    {
-//      try {
-//        if (com.chess_game.ChessGame.test_board.getBox(Coordinate.add(c, t)).isOccupied() == true) {
-//          if (com.chess_game.ChessGame.test_board.getPiece(Coordinate.add(c, t)).getClass().equals(Knight.class)) {
-//            if (com.chess_game.ChessGame.test_board.getPiece(Coordinate.add(c, t)).getColor() != this.getColor())
-//              return true;
-//          }
-//        }
-//      } catch(Exception e) {}
-//    }
-//    /*if loop falls through*/ return false;
-//  }
-  
-//  private boolean isQueenChecking() {
-//    Coordinate c = com.chess_game.ChessGame.test_board.getPieceCoordinates(this);//get king coordinates in test_board
-//    Coordinate t = c;
-    
-//    Coordinate[] array_of_coordinates = new Coordinate[8];
-    
-//    array_of_coordinates[0] = new Coordinate(0, 1);
-//    array_of_coordinates[1] = new Coordinate(0, -1);
-//    array_of_coordinates[2] = new Coordinate(1, 0);
-//    array_of_coordinates[3] = new Coordinate(-1, 0);
-    
-//    array_of_coordinates[4] = new Coordinate(1, 1);
-//    array_of_coordinates[5] = new Coordinate(-1, -1);
-//    array_of_coordinates[6] = new Coordinate(1, -1);
-//    array_of_coordinates[7] = new Coordinate(-1, 1);
-    
-//    for (Coordinate s : array_of_coordinates) {
-//      try {
-//        while (true) {
-//          t = Coordinate.add(t, s);
-          
-//          if (com.chess_game.ChessGame.test_board.getBox(Coordinate.add(c, t)).isOccupied() == true) {
-//            if (com.chess_game.ChessGame.test_board.getPiece(Coordinate.add(c, t)).getColor() != this.getColor()) {
-//              break; //if broken, then no queen in current direction checking
-//            }
-//            if (com.chess_game.ChessGame.test_board.getPiece(Coordinate.add(c, t)).getClass().equals(Queen.class))
-//              return true;
-//            else
-//              break; //if exception caught, then no queen in current direction checking
-//          }
-//        }
-//      } catch (Exception e) {} //if exception caught, then no queen in current direction checking 
-      
-//      t=c;//resetting t for next iteration
-//    }
-    
-//    /*loop falls through*/ return false;
-//  }
-  
-//  private boolean isRookChecking() {
-//    Coordinate c = com.chess_game.ChessGame.test_board.getPieceCoordinates(this);//get king coordinates in test_board
-//    Coordinate t = c;
-    
-//    Coordinate[] array_of_coordinates = new Coordinate[8];
-    
-//    array_of_coordinates[0] = new Coordinate(0, 1);
-//    array_of_coordinates[1] = new Coordinate(0, -1);
-//    array_of_coordinates[2] = new Coordinate(1, 0);
-//    array_of_coordinates[3] = new Coordinate(-1, 0);
-    
-//    for (Coordinate s : array_of_coordinates) {
-//      try {
-//        while (true) {
-//          t = Coordinate.add(t, s);
-          
-//          if (com.chess_game.ChessGame.test_board.getBox(Coordinate.add(c, t)).isOccupied() == true) {
-//            if (com.chess_game.ChessGame.test_board.getPiece(Coordinate.add(c, t)).getColor()!= this.getColor()) {
-//              break; //if broken, then no queen in current direction checking
-//            }
-//            if (com.chess_game.ChessGame.test_board.getPiece(Coordinate.add(c, t)).getClass().equals(Queen.class))
-//              return true;
-//            else
-//              break; //if exception caught, then no queen in current direction checking
-//          }
-//        }
-//      } catch (Exception e) {} //if exception caught, then no queen in current direction checking
-      
-//      t=c;//resetting t for next iteration
-//    }
-    
-//    /*loop falls through*/ return false;
-//  }
-  
-//  private boolean isBishopChecking() {
-//    Coordinate c = com.chess_game.ChessGame.test_board.getPieceCoordinates(this);//get king coordinates in test_board
-//    Coordinate t = c;
-    
-//    Coordinate[] array_of_coordinates = new Coordinate[8];
-    
-//    array_of_coordinates[4] = new Coordinate(1, 1);
-//    array_of_coordinates[5] = new Coordinate(-1, -1);
-//    array_of_coordinates[6] = new Coordinate(1, -1);
-//    array_of_coordinates[7] = new Coordinate(-1, 1);
-    
-//    for (Coordinate s : array_of_coordinates) {
-//      try {
-//        while (true) {
-//          t = Coordinate.add(t, s);
-          
-//          if (com.chess_game.ChessGame.test_board.getBox(Coordinate.add(c, t)).isOccupied() == true) {
-//            if (com.chess_game.ChessGame.test_board.getPiece(Coordinate.add(c, t)).getColor() != this.getColor()) {
-//              break; //if broken, then no queen in current direction checking
-//            }
-//            if (com.chess_game.ChessGame.test_board.getPiece(Coordinate.add(c, t)).getClass().equals(Queen.class))
-//              return true;
-//            else
-//              break; //if exception caught, then no queen in current direction checking
-//          }
-//        }
-//      } catch (Exception e) {} //if exception caught, then no queen in current direction checking
-      
-//      t=c;//resetting t for next iteration
-//    }
-    
-//    /*loop falls through*/ return false;
-//  }
-  
-//  private boolean isPawnChecking() {
-//    Coordinate c = com.chess_game.ChessGame.test_board.getPieceCoordinates(this);//get king coordinates in test_board
-//    Coordinate t;
-    
-//    try {
-//      t = new Coordinate(1, 1);
-//      if (com.chess_game.ChessGame.test_board.getBox(Coordinate.add(c, t)).isOccupied() == true) {
-//        if (com.chess_game.ChessGame.test_board.getPiece(Coordinate.add(c, t)).getClass().equals(Pawn.class)) {
-//          if (com.chess_game.ChessGame.test_board.getPiece(Coordinate.add(c, t)).getColor() != this.getColor())
-//            return true;
-//        }
-//      }
-//    } catch (Exception e) {}
-    
-//    try {
-//      t = new Coordinate(-1, 1);
-//      if (com.chess_game.ChessGame.test_board.getBox(Coordinate.add(c, t)).isOccupied() == true) {
-//        if (com.chess_game.ChessGame.test_board.getPiece(Coordinate.add(c, t)).getClass().equals(Pawn.class)) {
-//          if (com.chess_game.ChessGame.test_board.getPiece(Coordinate.add(c, t)).getColor() != this.getColor())
-//            return true;
-//        }
-//      }
-//    } catch (Exception e) {}
-    
-//    /*if nothing returned yet, by default*/return false;
-//  }
-  
-//  private boolean isKingChecking() {
-//    Coordinate c = com.chess_game.ChessGame.test_board.getPieceCoordinates(this);//get king coordinates in test_board
-    
-//    Coordinate[] array_of_coordinates = new Coordinate[8];
-    
-//    array_of_coordinates[0] = new Coordinate(1, 1);
-//    array_of_coordinates[2] = new Coordinate(0, 1);
-//    array_of_coordinates[1] = new Coordinate(-1, 1);
-    
-//    array_of_coordinates[3] = new Coordinate(1, 0);
-//    array_of_coordinates[4] = new Coordinate(-1, 0);
-    
-//    array_of_coordinates[5] = new Coordinate(1, -1);
-//    array_of_coordinates[6] = new Coordinate(0, -1);
-//    array_of_coordinates[7] = new Coordinate(-1, -1);
-    
-//    for (Coordinate t : array_of_coordinates)
-//    {
-//      try {
-//        if (com.chess_game.ChessGame.test_board.getBox(Coordinate.add(c, t)).isOccupied() == true) {
-//          if (com.chess_game.ChessGame.test_board.getPiece(Coordinate.add(c, t)).getClass().equals(Knight.class)) {
-//            if (com.chess_game.ChessGame.test_board.getPiece(Coordinate.add(c, t)).getColor() != this.getColor())
-//              return true;
-//          }
-//        }
-//      } catch (Exception e) {}
-//    }
-//    /*if loop falls through*/ return false;
-//  }
-  
   public boolean isMoveValid(Coordinate c1, Coordinate c2) {
-//    System.out.println("debug");//debug
     if (!isMoveInRange(c1, c2))
       return false;
     else if (isPathBlocked(c1, c2))
@@ -252,13 +41,16 @@ public class Piece {
     return false;}
   
   public boolean isTargetBlocked(Coordinate c2) {
-//    System.out.print("isTargetBlocked = " + String.valueOf(this.getColor() == com.chess_game.ChessGame.game_board.getBox(c2).getPiece().getColor()));//debug
-//    System.out.println(this.getColor());//debug
-    System.out.println("Target is blocked. Try a different move.");
-    if (this.getColor() == com.chess_game.ChessGame.game_board.getBox(c2).getPiece().getColor())
-      return true;
-    else
-      return false;
+    try {
+      if (this.getColor() == com.chess_game.ChessGame.game_board.getBox(c2).getPiece().getColor()) {
+        System.out.println("Target is blocked. Try a different move.");
+        return true;
+      }
+      else
+        return false;
+    } catch (ArrayIndexOutOfBoundsException e) {
+      return false;//if the  array index is out of bounds, the target isn't blocked, it doesn't exist
+    }
   }
   
   public String toString() {

@@ -51,7 +51,6 @@ public class ChessGame {
       }
     } while (true);
     
-//    System.out.println(pieces);//debug
   }
   
   public static void addPieces() {
@@ -119,21 +118,14 @@ public class ChessGame {
       Boolean b = true;
       
       do {
-//        test_board = new Board(game_board);
         c = getMove(1);
         
         if (game_board.getPiece(c[0]).getColor() == 'W' && game_board.getPiece(c[0]).isMoveValid(c[0], c[1])) {
           b = false;
-//          test_board = game_board.makeHypoMove(c[0], c[1]);
           game_board.getBox(c[1]).getPiece().setPieceDead();
           game_board.makeMove(c[0], c[1]);
         }
-        
-//        System.out.println(test_board.getPiece(c[1]).isMoveValid(c[0], c[1]));//debug
-      } while (b);//|| !test_board.getPiece(c[1]).isMoveValid());
-      
-//      game_board.getBox(c[1]).getPiece().setPieceDead();
-//      game_board = new Board(test_board);
+      } while (b);
       
       if (!pieces.get("black_king").isPieceInGame()) {
         System.out.println("Player 1 Wins");
@@ -148,26 +140,30 @@ public class ChessGame {
   }
   
   public static boolean player2Turn() {
-   Coordinate[] c;
-   
-    do {
-      test_board = new Board(game_board);
-      c = getMove(2);
-      if (game_board.getBox(c[0]).getPiece().getColor() == 'B')
-        test_board = game_board.makeHypoMove(c[0], c[1]);
-//      System.out.println(test_board);
+   try {
+      Coordinate[] c;
+      Boolean b = true;
+      
+      do {
+        c = getMove(2);
+        
+        if (game_board.getPiece(c[0]).getColor() == 'B' && game_board.getPiece(c[0]).isMoveValid(c[0], c[1])) {
+          b = false;
+          game_board.getBox(c[1]).getPiece().setPieceDead();
+          game_board.makeMove(c[0], c[1]);
+        }
+      } while (b);
+      
+      if (!pieces.get("white_king").isPieceInGame()) {
+        System.out.println("Player 2 Wins");
+        return true;
+      }
+      else
+        return false;
+    } catch (ArrayIndexOutOfBoundsException e) {
+      System.out.println("Move is invalid");
+      return player2Turn();
     }
-    while (test_board.getPiece(c[1]).getColor() != 'B');// || !test_board.getPiece(c[1]).isMoveValid());
-    
-    game_board.getBox(c[1]).getPiece().setPieceDead();
-    game_board = new Board(test_board);
-    
-    if (!pieces.get("white_king").isPieceInGame()) {
-      System.out.println("Player 2 Wins");
-      return true;
-    }
-    else
-      return false;
   }
   
   public static Coordinate[] getMove(int i)
@@ -189,7 +185,7 @@ public class ChessGame {
       return c;
       
     } catch (Exception e) {
-      System.out.println("move is not in range");
+      System.out.println("Move is not in valid");
       return getMove(i);
     }
   }
