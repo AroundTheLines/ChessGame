@@ -175,7 +175,7 @@ public class ChessGame {
     else if (move.toLowerCase().equals("forfeit")) {
       System.out.println("Current player has forfeited");
       System.out.println("Player " + 2/i + " wins");
-      System.exit(0);//change to end without killinga1
+      System.exit(0);//change to end without killing
     }
     //else
     

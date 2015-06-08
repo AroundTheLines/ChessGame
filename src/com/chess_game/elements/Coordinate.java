@@ -21,6 +21,14 @@ public class Coordinate {
   return this;
  }
  
+ public int getXComponent() {
+   return this.x;
+ }
+ 
+ public int getYComponent() {
+   return this.y;
+ }
+ 
  public static Coordinate add(Coordinate a, Coordinate b){
   return new Coordinate(a.x + b.x, a.y + b.y);
  }
