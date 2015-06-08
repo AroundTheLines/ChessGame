@@ -22,31 +22,56 @@ public class Piece {
   public void setPieceDead() {this.inGame = false;}
   
   public boolean isMoveValid(Coordinate c1, Coordinate c2) {
-    if (!isMoveInRange(c1, c2))
-      return false;
-    else if (isPathBlocked(c1, c2))
-      return false;
-    else if (isTargetBlocked(c2))
-      return false;
-    else
-      return true;
+//    System.out.println(isMoveInRange(c1, c2));//debug
+    return isMoveInRange(c1, c2) && !isTargetBlocked(c2) && !isPathBlocked(c1, c2);
   }
   
   public boolean isMoveInRange(Coordinate c1, Coordinate c2) {
-    //coordinates components of (current position - target position) must have same mmagnitude
-//    System.out.println("debug, " + String.valueOf(this.getClass()));
     
-//    System.out.println(this.getClass());
     Coordinate c = (Coordinate.substract(c1, c2));
     String str = "Move is not in range. Try making a different move.";
     Board game_board = com.chess_game.ChessGame.game_board;
     
     switch (String.valueOf(this.getClass())) {
       case "class com.chess_game.pieces.Pawn": 
-        if (Math.abs(c.getXComponent()) == 1 && Math.abs(c.getYComponent()) == 1) {
-        if (game_board.getPiece(Coordinate.add(game_board.getPieceCoordinates(this), c)).getColor() != this.getColor())
-          System.out.println("debug");
-      }
+        if (this.getColor() == 'W') {
+          if (c.getXComponent() == 0) {
+            if (c.getYComponent() == -2 && c1.getYComponent() == 6)
+              return true;
+            else if (c.getYComponent() == -1)
+              return true;
+            else
+              return false;
+          }
+          else if (Math.abs(c.getXComponent()) == 1 && c.getYComponent() == -1) {
+            if (game_board.getPiece(c2).getColor() == 'B') {
+              return true;
+            }
+            else
+              return false;
+          }
+          else
+            return false;
+        }
+        else {
+          if (c.getXComponent() == 0) {
+              if (c.getYComponent() == 2 && c1.getYComponent() == 1)
+                return true;
+              else if (c.getYComponent() == 1)
+                return true;
+              else
+                return false;
+          }
+          else if (Math.abs(c.getXComponent()) == 1 && c.getYComponent() == 1) {
+            if (game_board.getPiece(c2).getColor() == 'W') {
+              return true;
+            }
+            else
+              return false;
+          }
+          else
+            return false;
+        }
         
       case "class com.chess_game.pieces.Rook":     
         if (c.getXComponent() == 0 || c.getYComponent() == 0)
