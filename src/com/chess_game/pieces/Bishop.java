@@ -4,15 +4,15 @@ import com.chess_game.elements.*;
 public class Bishop extends Piece {
   
   public Bishop(char color) {
-    //Pre:
-    //Post:
+    //Pre: None
+    //Post: Creates Bishop object
     super(color);
   }
   
   @Override
   public String toString() {
-    //Pre:
-    //Post:
+    //Pre: None
+    //Post: When objected printed, it's understandable by human
     return getColor() + "B";
   } 
 }

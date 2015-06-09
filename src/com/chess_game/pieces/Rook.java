@@ -4,15 +4,15 @@ import com.chess_game.elements.*;
 public class Rook extends Piece {
   
   public Rook(char color) { 
-    //Pre:
-    //Post:
+    //Pre: None
+    //Post: Creates Rook Object
     super(color);
   }
     
   @Override
   public String toString() {
-    //Pre:
-    //Post:
+    //Pre: None
+    //Post: When objected printed, it's understandable by human
     return getColor() + "R";
   }
   

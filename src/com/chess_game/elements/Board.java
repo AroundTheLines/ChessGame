@@ -5,21 +5,21 @@ public class Board {
   private Box[][] board;
   
   public Board(Box[][] board) {
-    //Pre:
-    //Post:
+    //Pre: None
+    //Post: Creates an object of type board
     this.board = board;
   }
     
   public void makeMove(Coordinate from, Coordinate to){
-    //Pre:
-    //Post:
+    //Pre: Assuming arguments passed are correct
+    //Post: Makes a move
       this.getBox(to).setPiece(this.getBox(from).getPiece());
       this.getBox(from).setBoxEmpty();
   }
   
   public Coordinate getPieceCoordinates(Piece p){
-    //Pre:
-    //Post:
+    //Pre: None
+    //Post: Returns any piece's coordinates on the board
     for(int i = 0; i < board.length; i++){
       for(int j = 0; j < board[i].length; j++){
         if(board[i][j].getPiece() == p){
@@ -31,20 +31,20 @@ public class Board {
   }
   
   public Box getBox(Coordinate c){
-    //Pre:
-    //Post:
+    //Pre: None
+    //Post: Returns a box with given coordinates
     return board[c.y][c.x];
   }
   
   public Piece getPiece(Coordinate c){
-    //Pre:
-    //Post:
+    //Pre: None
+    //Post: returns a piece with given coordinates
     return board[c.y][c.x].getPiece();
   }
   
   public String toString() {
-    //Pre:
-    //Post:
+    //Pre: None
+    //Post: When objected printed, it's understandable by human
     String printable = "";
     int i = 8;
     

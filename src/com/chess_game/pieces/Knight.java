@@ -4,15 +4,15 @@ import com.chess_game.elements.*;
 public class Knight extends Piece {
   
   public Knight(char color) { 
-    //Pre:
-    //Post:
+    //Pre: None
+    //Post: Creates Knight Object
     super(color);
   }
   
   @Override
   public String toString() {
-    //Pre:
-    //Post:
+    //Pre: None
+    //Post: When objected printed, it's understandable by human
     return getColor() + "N";
   }
   

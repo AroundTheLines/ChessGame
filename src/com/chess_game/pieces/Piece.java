@@ -9,31 +9,31 @@ public class Piece {
   public Piece(){} //no-arg constuctor to avoid stupid errors
   
   public Piece(char color) { 
-    //Pre:
-    //Post:
+    //Pre: None
+    //Post:Makes the Piece object
     this.color = color;
     this.inGame = true;
   }
   
   public char getColor() {
-    //Pre:
-    //Post:
+    //Pre: None
+    //Post: returns color of piece
     return this.color;
   }
   
   public boolean isPieceInGame() {
-    //Pre:
-    //Post:
+    //Pre: None
+    //Post: return if the piece is alive as boolean
     return this.inGame;}
   
   public void setPieceDead() {
-    //Pre:
-    //Post:
+    //Pre: None
+    //Post: kills the piece
     this.inGame = false;}
   
   public boolean isMoveValid(Coordinate c1, Coordinate c2) {
-    //Pre:
-    //Post:
+    //Pre: Coordinates must be correct
+    //Post: returns if the move is valid as a boolean
     if (!isMoveInRange(c1, c2))
       return false;
     else if (isPathBlocked(c1, c2))
@@ -45,31 +45,31 @@ public class Piece {
   }
   
   public boolean isMoveInRange(Coordinate c1, Coordinate c2) {
-    //Pre:
-    //Post:
+    //Pre: Coordinates must be correct
+    //Post: returns if the move is in range of piece as a boolean
     
-    Coordinate c = (Coordinate.subtract(c1, c2));
+    Coordinate c = (Coordinate.subtract(c1, c2));//using subtraction of coordinates, we can easily check if move is in range of piece
     String str = "Move is not in range. Try making a different move.";
     Board game_board = com.chess_game.elements.Constants.game_board;
     
     switch (String.valueOf(this.getClass())) {
-      case "class com.chess_game.pieces.Pawn": 
-        if (this.getColor() == 'W') {
-          if (c.getXComponent() == 0) {
-            if (c.getYComponent() == -2 && c1.getYComponent() == 6)
+      case "class com.chess_game.pieces.Pawn": //If the type of piece is pawn
+        if (this.getColor() == 'W') { //if the color of the pawn is white
+          if (c.getXComponent() == 0) {//if pawn doesn't move diag
+            if (c.getYComponent() == -2 && c1.getYComponent() == 6) //if it's at it's starting position and moves up two, move is in range
               return true;
-            else if (c.getYComponent() == -1)
+            else if (c.getYComponent() == -1) //if pawn only moves up one, its in its range regardless
               return true;
-            else {
+            else { //if the above two failed, the move isn't in range. this doesn't take into account impassante b/c idk exactly how that works
               System.out.println(str);
               return false;
             }
           }
-          else if (Math.abs(c.getXComponent()) == 1 && c.getYComponent() == -1) {
-            if (game_board.getPiece(c2).getColor() == 'B') {
+          else if (Math.abs(c.getXComponent()) == 1 && c.getYComponent() == -1) { //if pawn moves diagnally
+            if (game_board.getPiece(c2).getColor() == 'B') { //if target contains a black piece, then move is in range
               return true;
             }
-            else {
+            else { //otherwise you can't move diagnolly and move isn't in range
               System.out.println(str);
               return false;
             }
@@ -79,7 +79,8 @@ public class Piece {
             return false;
           }
         }
-        else {
+        else { //otherwise if the piece is black
+          //same stuff for if the piece is white, except tweaked a little to make it work, structure is same
           if (c.getXComponent() == 0) {
               if (c.getYComponent() == 2 && c1.getYComponent() == 1)
                 return true;
@@ -99,172 +100,176 @@ public class Piece {
               return false;
             }
           }
-          else {
+          else { //if all fails, the move isn't in the pawn's range
             System.out.println(str);
             return false;
           }
         }
         
-      case "class com.chess_game.pieces.Rook":     
-        if (c.getXComponent() == 0 || c.getYComponent() == 0)
+      case "class com.chess_game.pieces.Rook": //if the piece is a rook 
+        if (c.getXComponent() == 0 || c.getYComponent() == 0) //if it moves horizontally or vertically, then the move is in range
           return true;
-        else {
+        else {//otherwise it's not
           System.out.println(str);
           return false;
         }
         
-      case "class com.chess_game.pieces.Knight": 
-        if (Math.abs(c.getXComponent()) == 1 && Math.abs(c.getYComponent()) <= 2)
+      case "class com.chess_game.pieces.Knight": //if the piece is a night
+        if (Math.abs(c.getXComponent()) == 1 && Math.abs(c.getYComponent()) <= 2)//if the knight moves in an 'L' shape
           return true;
-        else if (Math.abs(c.getXComponent()) == 2 && Math.abs(c.getYComponent()) <= 1)
+        else if (Math.abs(c.getXComponent()) == 2 && Math.abs(c.getYComponent()) <= 1)//or if it moves in an 'L' shape a slightly different way, the move is in range
           return true;
-        else {
+        else {//otherwise it's not
           System.out.println(str);
           return false;
         }
         
-      case "class com.chess_game.pieces.Bishop": 
-        if (Math.abs(c.getXComponent()) == Math.abs(c.getYComponent()))
+      case "class com.chess_game.pieces.Bishop": //if the piece is a bishop
+        if (Math.abs(c.getXComponent()) == Math.abs(c.getYComponent()))//if it moves diagonally, the move is in range
           return true;
-        else {
+        else {//otherwise it's not
           System.out.println(str);
           return false;
         }
         
-      case "class com.chess_game.pieces.Queen": 
-        if (c.getXComponent() == 0 || c.getYComponent() == 0)
+      case "class com.chess_game.pieces.Queen": //if the piece is a queen
+        if (c.getXComponent() == 0 || c.getYComponent() == 0) //if it moves like a bishop
           return true;
-        else if (Math.abs(c.getXComponent()) == Math.abs(c.getYComponent()))
+        else if (Math.abs(c.getXComponent()) == Math.abs(c.getYComponent())) //or like a rook, the move is in range
           return true;
-        else {
+        else {//otherwise it's not
           System.out.println(str);
           return false;
         }
         
-      case "class com.chess_game.pieces.King": 
-        if (Math.abs(c.getXComponent()) <= 1 && Math.abs(c.getYComponent()) <= 1)
+      case "class com.chess_game.pieces.King": //if the piece is a king
+        if (Math.abs(c.getXComponent()) <= 1 && Math.abs(c.getYComponent()) <= 1)//if it moves within its 1 square radius, the move is in range
           return true;
-        else {
+        else {//otherwise it's not
           System.out.println(str);
           return false;
         }
           
-      default: 
+      default: //if the piece is a NullPiece
         System.out.print(str);
-        return false;
+        return false;//the move isn't in range/isn't valid
     }
   }
   
   public boolean isPathBlocked(Coordinate c1, Coordinate c2) {
-    //Pre:
-    //Post:
+    //Pre: assumes coordinates are correct
+    //Post: return if the path to target is blocked as boolean
     
     Coordinate c = (Coordinate.subtract(c1, c2));
     String str = "Move path is blocked. Try making a different move.";
     
     switch (String.valueOf(this.getClass())) {
-      case "class com.chess_game.pieces.Knight":  
-        return false;
+      case "class com.chess_game.pieces.Knight":// if the piece is a knight
+        return false;//nothing can block it
         
-      case "class com.chess_game.pieces.King":
-        return false;
+      case "class com.chess_game.pieces.King":// if the piece is a king
+        return false;//nothing can block it
          
-      case "class com.chess_game.pieces.Pawn":
-        if (Math.abs(Coordinate.subtract(c1, c2).getXComponent()) == 1 && Math.abs(Coordinate.subtract(c1, c2).getYComponent()) == 1)
-          return false;
+      case "class com.chess_game.pieces.Pawn": //if the piece is a pawn
+        if (Math.abs(Coordinate.subtract(c1, c2).getXComponent()) == 1 && Math.abs(Coordinate.subtract(c1, c2).getYComponent()) == 1)//if the pawn is going 1 box diagonally
+          return false;//nothing can block it
+        else if (Math.abs(Coordinate.subtract(c1, c2).getYComponent()) == 1 && com.chess_game.elements.Constants.game_board.getPiece(c2).getColor() == 'n')//if the pawn is going up 1 box
+          return false;//nothing can block it
+        //if the pawn is white and it's going 2 boxes up and there's only a NullPiece in between
         else if (this.getColor() == 'W' && com.chess_game.elements.Constants.game_board.getPiece(Coordinate.add(c1, new Coordinate(0, -1))).getClass() == com.chess_game.pieces.NullPiece.class)
-          return false;
+          return false;//it's not being blocked
+        //if the pawn is white and it's going 2 boxes down and there's only a NullPiece in between
         else if (this.getColor() == 'B' && com.chess_game.elements.Constants.game_board.getPiece(Coordinate.add(c1, new Coordinate(0, 1))).getClass() == com.chess_game.pieces.NullPiece.class)
-          return false;
-        else {
+          return false;//it's not being blocked
+        else {//otherwise it's being blocked
           System.out.println(str);
           return true;
         }
         
-      default:
+      default: //if the piece is any other piece
         String direction = getDirection(c);
         
         switch (direction) {
-          case "Up":
-            for (int i = 0; i < Math.abs(c.getYComponent()); i++) {
-              if (com.chess_game.elements.Constants.game_board.getBox(Coordinate.add(c1, new Coordinate(0, -1))).getPiece().getClass() != com.chess_game.pieces.NullPiece.class) {
+          case "Up"://if the direction of the piece is upward
+            for (int i = 0; i < Math.abs(c.getYComponent()); i++) {//check all boxes between target and current position
+              if (com.chess_game.elements.Constants.game_board.getBox(Coordinate.add(c1, new Coordinate(0, -1 * i))).getPiece().getClass() != com.chess_game.pieces.NullPiece.class) { //if there's anything but a null piece in between
+                System.out.println(str);
+                return true;//it's being blocked
+              }
+            }
+            
+          case "Down"://if the direction of the piece is downward
+            for (int i = 0; i < Math.abs(c.getYComponent()); i++) {//check all boxes between target and current position
+              if (com.chess_game.elements.Constants.game_board.getBox(Coordinate.add(c1, new Coordinate(0, i))).getPiece().getClass() != com.chess_game.pieces.NullPiece.class) { //if there's anything but a null piece in between
                 System.out.println(str);
                 return true;
               }
             }
             
-          case "Down":
-            for (int i = 0; i < Math.abs(c.getYComponent()); i++) {
-              if (com.chess_game.elements.Constants.game_board.getBox(Coordinate.add(c1, new Coordinate(0, 1))).getPiece().getClass() != com.chess_game.pieces.NullPiece.class) {
+          case "Right"://if the direction of the piece is rightward
+            for (int i = 0; i < Math.abs(c.getXComponent()); i++) {//check all boxes between target and current position
+              if (com.chess_game.elements.Constants.game_board.getBox(Coordinate.add(c1, new Coordinate(i, 0))).getPiece().getClass() != com.chess_game.pieces.NullPiece.class) { //if there's anything but a null piece in between
                 System.out.println(str);
                 return true;
               }
             }
             
-          case "Right":
-            for (int i = 0; i < Math.abs(c.getXComponent()); i++) {
-              if (com.chess_game.elements.Constants.game_board.getBox(Coordinate.add(c1, new Coordinate(1, 0))).getPiece().getClass() != com.chess_game.pieces.NullPiece.class) {
+          case "Left"://if the direction of the piece is leftward
+            for (int i = 0; i < Math.abs(c.getXComponent()); i++) {//check all boxes between target and current position
+              if (com.chess_game.elements.Constants.game_board.getBox(Coordinate.add(c1, new Coordinate(-1 * i, 0))).getPiece().getClass() != com.chess_game.pieces.NullPiece.class) { //if there's anything but a null piece in between
+                System.out.println(str);
+                return true;
+              }
+            }
+          
+          case "UpRight"://if the direction of the piece is uprightward
+            for (int i = 0; i < Math.abs(c.getXComponent()); i++) {//check all boxes between target and current position
+              if (com.chess_game.elements.Constants.game_board.getBox(Coordinate.add(c1, new Coordinate(i, -1 * i))).getPiece().getClass() != com.chess_game.pieces.NullPiece.class) { //if there's anything but a null piece in between
+                System.out.println(str);
+                return true;
+              }
+            }
+          
+          case "DownRight"://if the direction of the piece is downrightward
+            for (int i = 0; i < Math.abs(c.getXComponent()); i++) {//check all boxes between target and current position
+              if (com.chess_game.elements.Constants.game_board.getBox(Coordinate.add(c1, new Coordinate(i, i))).getPiece().getClass() != com.chess_game.pieces.NullPiece.class) { //if there's anything but a null piece in between
+                System.out.println(str);
+                return true;
+              }
+            }
+          
+          case "UpLeft"://if the direction of the piece is upleftward
+            for (int i = 0; i < Math.abs(c.getXComponent()); i++) {//check all boxes between target and current position
+              if (com.chess_game.elements.Constants.game_board.getBox(Coordinate.add(c1, new Coordinate(-1 * i, -1 * i))).getPiece().getClass() != com.chess_game.pieces.NullPiece.class) { //if there's anything but a null piece in between
+                System.out.println(str);
+                return true;
+              }
+            }
+          
+          case "DownLeft"://if the direction of the piece is downleftward
+            for (int i = 0; i < Math.abs(c.getXComponent()); i++) {//check all boxes between target and current position
+              if (com.chess_game.elements.Constants.game_board.getBox(Coordinate.add(c1, new Coordinate(-1 * i, i))).getPiece().getClass() != com.chess_game.pieces.NullPiece.class) { //if there's anything but a null piece in between
                 System.out.println(str);
                 return true;
               }
             }
             
-          case "Left":
-            for (int i = 0; i < Math.abs(c.getXComponent()); i++) {
-              if (com.chess_game.elements.Constants.game_board.getBox(Coordinate.add(c1, new Coordinate(-1, 0))).getPiece().getClass() != com.chess_game.pieces.NullPiece.class) {
-                System.out.println(str);
-                return true;
-              }
-            }
-          
-          case "UpRight":
-            for (int i = 0; i < Math.abs(c.getXComponent()); i++) {
-              if (com.chess_game.elements.Constants.game_board.getBox(Coordinate.add(c1, new Coordinate(1, -1))).getPiece().getClass() != com.chess_game.pieces.NullPiece.class) {
-                System.out.println(str);
-                return true;
-              }
-            }
-          
-          case "DownRight":
-            for (int i = 0; i < Math.abs(c.getXComponent()); i++) {
-              if (com.chess_game.elements.Constants.game_board.getBox(Coordinate.add(c1, new Coordinate(1, 1))).getPiece().getClass() != com.chess_game.pieces.NullPiece.class) {
-                System.out.println(str);
-                return true;
-              }
-            }
-          
-          case "UpLeft":
-            for (int i = 0; i < Math.abs(c.getXComponent()); i++) {
-              if (com.chess_game.elements.Constants.game_board.getBox(Coordinate.add(c1, new Coordinate(-1, -1))).getPiece().getClass() != com.chess_game.pieces.NullPiece.class) {
-                System.out.println(str);
-                return true;
-              }
-            }
-          
-          case "DownLeft":
-            for (int i = 0; i < Math.abs(c.getXComponent()); i++) {
-              if (com.chess_game.elements.Constants.game_board.getBox(Coordinate.add(c1, new Coordinate(-1, 1))).getPiece().getClass() != com.chess_game.pieces.NullPiece.class) {
-                System.out.println(str);
-                return true;
-              }
-            }
-            
-          default:
-            return false;
+          default://if nothing returned yet
+            return false;//then nothing blocking the piece
         }
     }
   }
   
   public boolean isTargetBlocked(Coordinate c2) {
-    //Pre:
-    //Post:
+    //Pre: Assuming coordinates are correct
+    //Post: Returns if target position is blocked as boolean
     try {
-      if (this.getColor() == com.chess_game.elements.Constants.game_board.getBox(c2).getPiece().getColor()) {
-        System.out.println("Target is blocked. Try making a different move.");
+      if (this.getColor() == com.chess_game.elements.Constants.game_board.getBox(c2).getPiece().getColor()) {//if this pieces color is the same as the color of the piece in target
+        System.out.println("Target is blocked. Try making a different move.");//the target is blocked
         return true;
       }
       else
-        return false;
+        return false;//otherwise it's not
     } catch (ArrayIndexOutOfBoundsException e) {
       System.out.println("Move is not in range of the board");
       return false;//if the  array index is out of bounds, the target isn't blocked, it doesn't exist
@@ -272,16 +277,18 @@ public class Piece {
   }
   
   private static String getDirection(Coordinate c) {
-    //Pre:
-    //Post:
+    //Pre: Assumes the coordinate subtracted (c2 - c1) is correct
+    //Post: returns direction piece is/will be travelling in
     int x, y;
     
+    //finds if the x component of subtracted coordinates is positive, zero, or negative
     try {
     x = c.getXComponent()/Math.abs(c.getXComponent());
     } catch (ArithmeticException e) {
       x = 0;
     }
     
+    //finds if the y component of subtracted coordinates is positive, zero, or negative
     try {
       y = c.getYComponent()/Math.abs(c.getYComponent());
     } catch (ArithmeticException e) {
@@ -290,6 +297,7 @@ public class Piece {
     
     Coordinate d = new Coordinate(x, y);
     
+    //specific numbers relate to specific directions
     if (d.getXComponent() == 0){
       if (d.getYComponent() > 0)
         return "Down";
@@ -320,8 +328,8 @@ public class Piece {
   }
   
   public String toString() {
-    //Pre:
-    //Post:
+    //Pre: None
+    //Post: When objected printed, it's understandable by human
     return "piece type not specified";
   }
 }

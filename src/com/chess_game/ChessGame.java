@@ -38,8 +38,8 @@ public class ChessGame {
   }
   
   public static void addPieces() {
-    //Pre:
-    //Post:
+    //Pre: None
+    //Post: Creates all pieces for the game
     
     //add kings
     com.chess_game.elements.Constants.pieces.put("white_king", new King('W'));
@@ -75,8 +75,8 @@ public class ChessGame {
   }
   
   public static void makeBoard() {
-    //Pre:
-    //Post
+    //Pre: None
+    //Post: Makes the actual game board
     Box[][] b = new Box[8][8];
     
     String[] str = {"rook0", "knight0", "bishop0", "queen", "king", "bishop1", "knight1", "rook1"};
@@ -102,23 +102,27 @@ public class ChessGame {
   }
   
   public static boolean player1Turn() {
-    //Pre:
-    //Post:
+    //Pre: None
+    //Post: Executes white's turn
     
     try {
       Coordinate[] c;
       Boolean b = true;
       
       do {
-        c = getMove(1);
+        c = getMove(1);//gets move
         
+        //first part of condition checks if selection of piece is the same color as the player. will make this more gracefull when the program actually works
+        //second part of condition checks if user desired mover is valid
         if (com.chess_game.elements.Constants.game_board.getPiece(c[0]).getColor() == 'W' && com.chess_game.elements.Constants.game_board.getPiece(c[0]).isMoveValid(c[0], c[1])) {
           b = false;
-          com.chess_game.elements.Constants.game_board.getBox(c[1]).getPiece().setPieceDead();
-          com.chess_game.elements.Constants.game_board.makeMove(c[0], c[1]);
+          com.chess_game.elements.Constants.game_board.getBox(c[1]).getPiece().setPieceDead();//kills piece at the target
+          com.chess_game.elements.Constants.game_board.makeMove(c[0], c[1]);//makes move
         }
-      } while (b);
+      } while (b);//keep doing above until user makes valid move
       
+      
+      //checks if king is dead
       if (!com.chess_game.elements.Constants.pieces.get("black_king").isPieceInGame()) {
         System.out.println("Player 1 Wins");
         return true;
@@ -126,14 +130,17 @@ public class ChessGame {
       else
         return false;
     } catch (ArrayIndexOutOfBoundsException e) {
+      //only supposed to be caught if user enters desired move/target that does not exist on the board
       System.out.println("Move is out of range of board");
       return player1Turn();
     }
   }
   
+  
+  //mostly same to player1Turn with some adjustments
   public static boolean player2Turn() {
-    //Pre:
-    //Post:
+    //Pre: None
+    //Post: Execute black's turn
     try {
       Coordinate[] c;
       Boolean b = true;
@@ -161,9 +168,9 @@ public class ChessGame {
   }
   
   public static Coordinate[] getMove(int i) {    
-    //Pre:
-    //Post:
-    String move = In.getString("\nPlayer " + String.valueOf(i) + ": Make Your Move: ");
+    //Pre: assumes i refers to current player number
+    //Post: returns the move the player wishes to make as coordinate array
+    String move = In.getString("\nPlayer " + String.valueOf(i) + ": Make Your Move: ");//user input of move
     
     if (move.toLowerCase().equals("quit"))
       System.exit(0);
@@ -174,8 +181,10 @@ public class ChessGame {
     }
     //else
     
+    //turns user input into coordinates we, programers, can work with, and stores it in an array
     Coordinate[] c = {new Coordinate(com.chess_game.elements.Constants.x_coord.get(move.charAt(0)) - 1, 8 - Integer.parseInt(move.substring(1, 2))), 
       new Coordinate(com.chess_game.elements.Constants.x_coord.get(move.charAt(2)) - 1, 8 - Integer.parseInt(move.substring(3, 4)))};
+    
     return c;
   }
 }

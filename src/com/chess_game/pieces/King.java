@@ -4,15 +4,15 @@ import com.chess_game.elements.*;
 public class King extends Piece {
   
   public King(char color) { 
-    //Pre:
-    //Post:
+    //Pre: None
+    //Post: Creates King Object
     super(color);
   }
   
   @Override
   public String toString() {
-    //Pre:
-    //Post:
+    //Pre: None
+    //Post: When objected printed, it's understandable by human
     return getColor() + "K";
   }
 }

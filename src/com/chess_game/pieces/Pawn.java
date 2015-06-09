@@ -4,15 +4,15 @@ import com.chess_game.elements.*;
 public class Pawn extends Piece {
   
   public Pawn(char color) { 
-    //Pre:
-    //Post:
+    //Pre: None
+    //Post: Creates Pawn Object
     super(color);
   }
   
   @Override
   public String toString() {
-    //Pre:
-    //Post:
+    //Pre: None
+    //Post: When objected printed, it's understandable by human
     return getColor() + "P";
   }
   
