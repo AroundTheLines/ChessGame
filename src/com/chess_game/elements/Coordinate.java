@@ -33,7 +33,7 @@ public class Coordinate {
   return new Coordinate(a.x + b.x, a.y + b.y);
  }
  
- public static Coordinate substract(Coordinate a, Coordinate b) {
+ public static Coordinate subtract(Coordinate a, Coordinate b) {
    return new Coordinate(b.x - a.x, b.y - a.y);
  }
  

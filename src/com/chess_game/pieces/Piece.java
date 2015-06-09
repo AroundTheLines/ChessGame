@@ -22,13 +22,19 @@ public class Piece {
   public void setPieceDead() {this.inGame = false;}
   
   public boolean isMoveValid(Coordinate c1, Coordinate c2) {
-//    System.out.println(isMoveInRange(c1, c2));//debug
-    return isMoveInRange(c1, c2) && !isTargetBlocked(c2) && !isPathBlocked(c1, c2);
+    if (!isMoveInRange(c1, c2))
+      return false;
+    else if (isPathBlocked(c1, c2))
+      return false;
+    else if (isTargetBlocked(c2))
+      return false;
+    else
+      return true;
   }
   
   public boolean isMoveInRange(Coordinate c1, Coordinate c2) {
     
-    Coordinate c = (Coordinate.substract(c1, c2));
+    Coordinate c = (Coordinate.subtract(c1, c2));
     String str = "Move is not in range. Try making a different move.";
     Board game_board = com.chess_game.ChessGame.game_board;
     
@@ -40,18 +46,24 @@ public class Piece {
               return true;
             else if (c.getYComponent() == -1)
               return true;
-            else
+            else {
+              System.out.println(str);
               return false;
+            }
           }
           else if (Math.abs(c.getXComponent()) == 1 && c.getYComponent() == -1) {
             if (game_board.getPiece(c2).getColor() == 'B') {
               return true;
             }
-            else
+            else {
+              System.out.println(str);
               return false;
+            }
           }
-          else
+          else {
+            System.out.println(str);
             return false;
+          }
         }
         else {
           if (c.getXComponent() == 0) {
@@ -59,18 +71,24 @@ public class Piece {
                 return true;
               else if (c.getYComponent() == 1)
                 return true;
-              else
+              else {
+                System.out.println(str);
                 return false;
+              }
           }
           else if (Math.abs(c.getXComponent()) == 1 && c.getYComponent() == 1) {
             if (game_board.getPiece(c2).getColor() == 'W') {
               return true;
             }
-            else
+            else {
+              System.out.println(str);
               return false;
+            }
           }
-          else
+          else {
+            System.out.println(str);
             return false;
+          }
         }
         
       case "class com.chess_game.pieces.Rook":     
@@ -124,19 +142,158 @@ public class Piece {
   }
   
   public boolean isPathBlocked(Coordinate c1, Coordinate c2) {
+    Coordinate c = (Coordinate.subtract(c1, c2));
+    String str = "Move path is blocked. Try making a different move.";
     
-    return false;}
+    switch (String.valueOf(this.getClass())) {
+      case "class com.chess_game.pieces.Knight":  
+        return false;
+        
+      case "class com.chess_game.pieces.King":
+        return false;
+         
+      case "class com.chess_game.pieces.Pawn":
+        if (Math.abs(Coordinate.subtract(c1, c2).getYComponent()) == 1)
+          return false;
+        else if (this.getColor() == 'W' && com.chess_game.ChessGame.game_board.getPiece(Coordinate.add(c1, new Coordinate(0, -1))).getClass() == com.chess_game.pieces.NullPiece.class)
+          return false;
+        else if (this.getColor() == 'B' && com.chess_game.ChessGame.game_board.getPiece(Coordinate.add(c1, new Coordinate(0, 1))).getClass() == com.chess_game.pieces.NullPiece.class)
+          return false;
+        else {
+          System.out.println(str);
+          return true;
+        }
+        
+      default:
+        String direction = getDirection(c);
+        
+        switch (direction) {
+          case "Up":
+            for (int i = 0; i < Math.abs(c.getYComponent()); i++) {
+              if (com.chess_game.ChessGame.game_board.getBox(Coordinate.add(c1, new Coordinate(0, -1))).getPiece().getClass() != com.chess_game.pieces.NullPiece.class) {
+                System.out.println(str);
+                return true;
+              }
+            }
+            
+          case "Down":
+            for (int i = 0; i < Math.abs(c.getYComponent()); i++) {
+              if (com.chess_game.ChessGame.game_board.getBox(Coordinate.add(c1, new Coordinate(0, 1))).getPiece().getClass() != com.chess_game.pieces.NullPiece.class) {
+                System.out.println(str);
+                return true;
+              }
+            }
+            
+          case "Right":
+            for (int i = 0; i < Math.abs(c.getXComponent()); i++) {
+              if (com.chess_game.ChessGame.game_board.getBox(Coordinate.add(c1, new Coordinate(1, 0))).getPiece().getClass() != com.chess_game.pieces.NullPiece.class) {
+                System.out.println(str);
+                return true;
+              }
+            }
+            
+          case "Left":
+            for (int i = 0; i < Math.abs(c.getXComponent()); i++) {
+              if (com.chess_game.ChessGame.game_board.getBox(Coordinate.add(c1, new Coordinate(-1, 0))).getPiece().getClass() != com.chess_game.pieces.NullPiece.class) {
+                System.out.println(str);
+                return true;
+              }
+            }
+          
+          case "UpRight":
+            for (int i = 0; i < Math.abs(c.getXComponent()); i++) {
+              if (com.chess_game.ChessGame.game_board.getBox(Coordinate.add(c1, new Coordinate(1, -1))).getPiece().getClass() != com.chess_game.pieces.NullPiece.class) {
+                System.out.println(str);
+                return true;
+              }
+            }
+          
+          case "DownRight":
+            for (int i = 0; i < Math.abs(c.getXComponent()); i++) {
+              if (com.chess_game.ChessGame.game_board.getBox(Coordinate.add(c1, new Coordinate(1, 1))).getPiece().getClass() != com.chess_game.pieces.NullPiece.class) {
+                System.out.println(str);
+                return true;
+              }
+            }
+          
+          case "UpLeft":
+            for (int i = 0; i < Math.abs(c.getXComponent()); i++) {
+              if (com.chess_game.ChessGame.game_board.getBox(Coordinate.add(c1, new Coordinate(-1, -1))).getPiece().getClass() != com.chess_game.pieces.NullPiece.class) {
+                System.out.println(str);
+                return true;
+              }
+            }
+          
+          case "DownLeft":
+            for (int i = 0; i < Math.abs(c.getXComponent()); i++) {
+              if (com.chess_game.ChessGame.game_board.getBox(Coordinate.add(c1, new Coordinate(-1, 1))).getPiece().getClass() != com.chess_game.pieces.NullPiece.class) {
+                System.out.println(str);
+                return true;
+              }
+            }
+            
+          default:
+            return false;
+        }
+    }
+  }
   
   public boolean isTargetBlocked(Coordinate c2) {
     try {
       if (this.getColor() == com.chess_game.ChessGame.game_board.getBox(c2).getPiece().getColor()) {
-        System.out.println("Target is blocked. Try a different move.");
+        System.out.println("Target is blocked. Try making a different move.");
         return true;
       }
       else
         return false;
     } catch (ArrayIndexOutOfBoundsException e) {
       return false;//if the  array index is out of bounds, the target isn't blocked, it doesn't exist
+    }
+  }
+  
+  private static String getDirection(Coordinate c) {
+    int x, y;
+    
+    try {
+    x = c.getXComponent()/Math.abs(c.getXComponent());
+    } catch (ArithmeticException e) {
+      x = 0;
+    }
+    
+    try {
+      y = c.getYComponent()/Math.abs(c.getYComponent());
+    } catch (ArithmeticException e) {
+      y = 0;
+    }
+    
+    Coordinate d = new Coordinate(x, y);
+    
+    if (d.getXComponent() == 0){
+      if (d.getYComponent() > 0)
+        return "Down";
+      else
+        return "Up";
+    }
+      
+    else if (d.getYComponent() == 0){
+      if (d.getXComponent() > 0)
+        return "Right";
+      else
+        return "Left";
+    }
+    
+    else if (d.getXComponent() > 0) {
+      if (d.getYComponent() > 0)
+        return "DownRight";
+      else
+        return "UpRight";
+    }
+    
+    else {
+      if (d.getYComponent() > 0)
+        return "DownLeft";
+      else
+        return "UpLeft";
     }
   }
   

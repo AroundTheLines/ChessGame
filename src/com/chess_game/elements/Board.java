@@ -1,7 +1,3 @@
-
-/*TODO: 
- -initialize board array
- */
 package com.chess_game.elements;
 import com.chess_game.pieces.*;
 
