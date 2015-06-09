@@ -48,28 +48,38 @@ public class Piece {
     //Pre: Coordinates must be correct
     //Post: returns if the move is in range of piece as a boolean
     
-    Coordinate c = (Coordinate.subtract(c1, c2));//using subtraction of coordinates, we can easily check if move is in range of piece
+	//using subtraction of coordinates, we can easily check if move is in range of piece
+    Coordinate c = (Coordinate.subtract(c1, c2));
     String str = "Move is not in range. Try making a different move.";
     Board game_board = com.chess_game.elements.Constants.game_board;
     
     switch (String.valueOf(this.getClass())) {
-      case "class com.chess_game.pieces.Pawn": //If the type of piece is pawn
-        if (this.getColor() == 'W') { //if the color of the pawn is white
-          if (c.getXComponent() == 0) {//if pawn doesn't move diag
-            if (c.getYComponent() == -2 && c1.getYComponent() == 6) //if it's at it's starting position and moves up two, move is in range
+    //If the type of piece is pawn
+      case "class com.chess_game.pieces.Pawn":
+    	//if the color of the pawn is white
+        if (this.getColor() == 'W') { 
+        	//if pawn doesn't move diag
+          if (c.getXComponent() == 0) {
+        	//if it's at it's starting position and moves up two, move is in range
+            if (c.getYComponent() == -2 && c1.getYComponent() == 6) 
               return true;
-            else if (c.getYComponent() == -1) //if pawn only moves up one, its in its range regardless
+          //if pawn only moves up one, its in its range regardless
+            else if (c.getYComponent() == -1) 
               return true;
-            else { //if the above two failed, the move isn't in range. this doesn't take into account impassante b/c idk exactly how that works
+          //if the above two failed, the move isn't in range. this doesn't take into account en passante b/c idk exactly how that works
+            else { 
               System.out.println(str);
               return false;
             }
           }
-          else if (Math.abs(c.getXComponent()) == 1 && c.getYComponent() == -1) { //if pawn moves diagnally
-            if (game_board.getPiece(c2).getColor() == 'B') { //if target contains a black piece, then move is in range
+        //if pawn moves diagonally
+          else if (Math.abs(c.getXComponent()) == 1 && c.getYComponent() == -1) {
+        	//if target contains a black piece, then move is in range
+            if (game_board.getPiece(c2).getColor() == 'B') { 
               return true;
             }
-            else { //otherwise you can't move diagnolly and move isn't in range
+          //otherwise you can't move diagonally and move isn't in range
+            else { 
               System.out.println(str);
               return false;
             }
@@ -79,7 +89,8 @@ public class Piece {
             return false;
           }
         }
-        else { //otherwise if the piece is black
+      //otherwise if the piece is black
+        else { 
           //same stuff for if the piece is white, except tweaked a little to make it work, structure is same
           if (c.getXComponent() == 0) {
               if (c.getYComponent() == 2 && c1.getYComponent() == 1)
