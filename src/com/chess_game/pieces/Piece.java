@@ -1,4 +1,8 @@
-/* The superclass of all the pieces
+/* Author(s) Asalan Andany and Qile Wang
+ * 
+ * Description: 
+ * The superclass of all the pieces
+ * This where a move is checked for validity
  */
 
 package com.chess_game.pieces;

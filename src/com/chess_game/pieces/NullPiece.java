@@ -1,4 +1,7 @@
-/* A NullPiece occupies any box that is not occupied by any other piece
+/* Author(s) Asalan Andany and Qile Wang
+ * 
+ * Description:
+ * A NullPiece occupies any box that is not occupied by any other piece
  * This makes checks and comparisons easier
  * This also helps avoid NullPointerExceptions
  */

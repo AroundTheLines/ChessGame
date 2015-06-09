@@ -1,4 +1,7 @@
-/* The Knight Class
+/* Author(s) Asalan Andany and Qile Wang
+ * 
+ * Description:
+ * The Knight Class
  * Doesn't do much
  * Constructor + toString method
  */

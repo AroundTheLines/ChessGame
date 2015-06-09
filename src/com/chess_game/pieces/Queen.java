@@ -1,4 +1,7 @@
-/* The Queen Class
+/* Author(s) Asalan Andany and Qile Wang
+ * 
+ * Description:
+ * The Queen Class
  * Doesn't do much
  * Constructor + toString method
  */

@@ -1,4 +1,7 @@
-/* This class exists for the sole purpose of maing ChessGame.java cleaner
+/* Author(s) Asalan Andany and Qile Wang
+ * 
+ * Description:
+ * This class exists for the sole purpose of maing ChessGame.java cleaner
  * This class stores and creates constants used throoughout the program
  */
 

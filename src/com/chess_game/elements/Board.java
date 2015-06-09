@@ -1,4 +1,5 @@
-/* This class makes and does stuff with game_board 
+/* Author(s) Asalan Andany and Qile Wang
+ * Description: This class makes and does stuff with game_board 
  */
 
 package com.chess_game.elements;

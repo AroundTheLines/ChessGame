@@ -1,4 +1,9 @@
-/* The Pawn Class
+/* Author(s) Asalan Andany and Qile Wang
+ * 
+ * Description: 
+ * The Pawn Class
+ * Constructor + toString
+ * and, most importantly, takes care of pawn promotion case
  */
 
 package com.chess_game.pieces;

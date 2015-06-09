@@ -1,4 +1,5 @@
-/* Make and do stuff with coordinates in (x, y) form 
+/* Author(s) Asalan Andany and Qile Wang
+ * Description: Make and do stuff with coordinates in (x, y) form 
  */
 
 package com.chess_game.elements;

@@ -1,4 +1,7 @@
-/* The Bishop Class
+/* Author(s) Asalan Andany and Qile Wang
+ * 
+ * Description:
+ * The Bishop Class
  * Doesn't do much
  * Constructor + toString method
  */

@@ -1,4 +1,7 @@
-/* The Rook Class
+/* Author(s) Asalan Andany and Qile Wang
+ * 
+ * Description:
+ * The Rook Class
  * Doesn't do much
  * Constructor + toString method
  */

@@ -1,4 +1,5 @@
-/* This class exists to make reading, writing, overwriting and printing (to standard output) files easier
+/* Author(s) Asalan Andany
+ * Description: This class exists to make reading, writing, overwriting and printing (to standard output) files easier
  */
 
 package com.chess_game;

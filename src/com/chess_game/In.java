@@ -1,4 +1,5 @@
-/* Reads/takes in Standard Input 
+/* Author(s) Asalan Andany
+ * Description: Reads/takes in Standard Input 
  */
 
 package com.chess_game;

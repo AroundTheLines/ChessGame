@@ -1,4 +1,7 @@
-/* Chess game played in this class
+/* Author(s) Asalan Andany and Qile Wang
+ * 
+ * Description:
+ * Chess game played in this class
  * This is the class with the main method
  * 
  * player 1 = white
