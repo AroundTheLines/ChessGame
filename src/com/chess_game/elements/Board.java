@@ -8,14 +8,16 @@ public class Board {
   private Box[][] board;
   
   public Board(Box[][] board) {
-    //Pre: None
+    //Pre: require a 2-dimensional array of Box Objects
     //Post: Creates an object of type board
+    
     this.board = board;
   }
     
   public void makeMove(Coordinate from, Coordinate to){
-    //Pre: Assuming arguments passed are correct
+    //Pre: Assuming Coordinates passed are correct
     //Post: Makes a move
+    
     if (this.getPiece(from).getClass() == Pawn.class) {
       if (this.getPiece(from).getColor() == 'W' && to.getYComponent() == 0)
         Pawn.valueOf(this.getPiece(from)).promotePawn();
@@ -29,8 +31,9 @@ public class Board {
   }
   
   public Coordinate getPieceCoordinates(Piece p){
-    //Pre: None
+    //Pre: Piece must have a subtype (IE pawn, rook, queen, etc.)
     //Post: Returns any piece's coordinates on the board
+    
     for(int i = 0; i < board.length; i++){
       for(int j = 0; j < board[i].length; j++){
         if(board[i][j].getPiece() == p){
@@ -44,21 +47,25 @@ public class Board {
   public Box getBox(Coordinate c){
     //Pre: Assumes coordinates are correct
     //Post: Returns a box with given coordinates
+    
     return board[c.y][c.x];
   }
   
   public Piece getPiece(Coordinate c){
-    //Pre: None
+    //Pre: Assumes coordinates are correct
     //Post: returns a piece with given coordinates
+    
     return board[c.y][c.x].getPiece();
   }
   
   public String toString() {
     //Pre: None
     //Post: When objected printed, it's understandable by human
+    
     String printable = "";
     int i = 8;
     
+    //adding the String value of each and every box in the board
     for (Box[] boxes : board) {
       printable += String.valueOf(i)+ "\t";
       

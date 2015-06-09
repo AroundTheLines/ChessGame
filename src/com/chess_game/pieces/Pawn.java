@@ -10,13 +10,14 @@ import java.util.HashMap;
 public class Pawn extends Piece {
   
   public Pawn(char color) { 
-    //Pre: None
+    //Pre: Character representing color (IE: 'W' for white, 'B' for black and 'n' for no color) passed in
     //Post: Creates Pawn Object
+    
     super(color);
   }
   
   public void promotePawn() {
-    //Pre: 
+    //Pre: Only called when pawn reaches end of the chess board
     //Post: Promotes pawn when the pawn reaches other end of board
     
     HashMap<String, Piece> pieces = com.chess_game.elements.Constants.pieces;
@@ -74,8 +75,9 @@ public class Pawn extends Piece {
   }
   
   public static Pawn valueOf(Piece piece) {
-    //Pre: None
-    //Post: If an object is of type Pawn but is passed as a type Piece, cast the Piece as a Pawn
+    //Pre: Called only on a Piece of type Pawn
+    //Post: Casts the Piece as a Pawn
+    
     return (Pawn)piece;
   }
   
@@ -83,6 +85,7 @@ public class Pawn extends Piece {
   public String toString() {
     //Pre: None
     //Post: When objected printed, it's understandable by human
+    
     return getColor() + "P";
   }
   

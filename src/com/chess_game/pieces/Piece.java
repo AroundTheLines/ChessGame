@@ -9,11 +9,12 @@ public class Piece {
   private char color;
   private boolean inGame;
   
-  public Piece(){} //no-arg constuctor to avoid stupid errors
+  private Piece(){} //no-arg constuctor to avoid stupid errors
   
   public Piece(char color) { 
-    //Pre: Requires a character describing the color ('B' = Black, 'W' = white, 'n' = no color
+    //Pre: Character representing color (IE: 'W' for white, 'B' for black and 'n' for no color) passed in
     //Post: Makes the Piece object
+    
     this.color = color;
     this.inGame = true;
   }
@@ -21,17 +22,20 @@ public class Piece {
   public char getColor() {
     //Pre: None
     //Post: returns color of piece
+    
     return this.color;
   }
   
   public boolean isPieceInGame() {
     //Pre: None
     //Post: return if the piece is alive as boolean
+    
     return this.inGame;}
   
   public void setPieceDead() {
     //Pre: None
     //Post: kills the piece
+    
     this.inGame = false;}
   
   public boolean isMoveValid(Coordinate c1, Coordinate c2) {
@@ -48,7 +52,7 @@ public class Piece {
       return true;
   }
   
-  public boolean isMoveInRange(Coordinate c1, Coordinate c2) {
+  private boolean isMoveInRange(Coordinate c1, Coordinate c2) {
     //Pre: Coordinates must be correct
     //Post: returns if the move is in range of piece as a boolean
     
@@ -220,7 +224,7 @@ public class Piece {
     }
   }
   
-  public boolean isPathBlocked(Coordinate c1, Coordinate c2) {
+  private boolean isPathBlocked(Coordinate c1, Coordinate c2) {
     //Pre: assumes coordinates are correct
     //Post: return if the path to target is blocked as boolean
     
@@ -382,7 +386,7 @@ public class Piece {
     }
   }
   
-  public boolean isTargetBlocked(Coordinate c2) {
+  private boolean isTargetBlocked(Coordinate c2) {
     //Pre: Assuming coordinates are correct
     //Post: Returns if target position is blocked as boolean
     
@@ -450,6 +454,7 @@ public class Piece {
   public String toString() {
     //Pre: None
     //Post: When objected printed, it's understandable by human
+    
     return "piece type not specified";
   }
 }

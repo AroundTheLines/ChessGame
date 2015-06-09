@@ -8,11 +8,14 @@ import com.chess_game.pieces.*;
 import java.util.*;
 
 public class Constants {
-  public static HashMap<String, Piece> pieces = new HashMap<>();//initiallizes hashmap
+  //initiallizes hashmap
+  public static HashMap<String, Piece> pieces = new HashMap<>();
   
-  public static Board game_board;//initializes the game board
+  //initializes the game board
+  public static Board game_board;
   
-  public static NullPiece n = new NullPiece();//NullPiece to make life easier
+  //NullPiece to make life easier
+  public static NullPiece n = new NullPiece();
   
   //another hashmap to aid with the making of object of type coordinates Coordinates
   public static HashMap<Character, Integer> x_coord = new HashMap<Character, Integer>() {{
@@ -65,7 +68,8 @@ public class Constants {
   
   public static void makeBoard() {
     //Pre: None
-    //Post: Makes the actual game board
+    //Post: Makes the game board
+    
     Box[][] b = new Box[8][8];
     
     String[] str = {"rook0", "knight0", "bishop0", "queen", "king", "bishop1", "knight1", "rook1"};

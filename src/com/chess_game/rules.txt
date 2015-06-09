@@ -1,0 +1,20 @@
+Player 1 plays white
+Player 2 plays black
+
+WP = White Pawn; WR = White Rook; WN = White Knight; WB = White Bishop; WQ = White Queen; WK = White King
+BP = Black Pawn; BR = Black Rook; BN = Black Knight; BB = Black Bishop; BQ = Black Queen; BK = Black King
+
+To move a piece, for example, from coordinates a1 to coordinates b2: Enter a1b2.
+
+Same rules as a normal chess game, except no castling and impassante at the moment. Checks and checkmates
+also have no significance. In order to win, you must kill the opponent's king.
+
+If you don't know how to play chess: 
+			Step 1: Google it
+		     	Step 2: Learn
+
+************************SPECIAL COMMANDS**************************
+-Enter "quit" to quit the game
+-Enter "forfeit" to forfeit the game
+-Enter rules to see this stuff again
+*****************************END********************************

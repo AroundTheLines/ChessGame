@@ -9,8 +9,9 @@ import com.chess_game.elements.*;
 public class Rook extends Piece {
   
   public Rook(char color) { 
-    //Pre: None
+    //Pre: Character representing color (IE: 'W' for white, 'B' for black and 'n' for no color) passed in
     //Post: Creates Rook Object
+    
     super(color);
   }
     
@@ -18,6 +19,7 @@ public class Rook extends Piece {
   public String toString() {
     //Pre: None
     //Post: When objected printed, it's understandable by human
+    
     return getColor() + "R";
   }
   

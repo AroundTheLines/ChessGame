@@ -25,6 +25,11 @@ public class ChessGame {
     
     //makes the board, with the pieces contained on the board
     com.chess_game.elements.Constants.makeBoard();
+
+    //Prints the rules to Standard Output
+    String[] file = File.read(System.getProperty("user.dir") + "\\com\\chess_game\\rules.txt");
+    File.println(file);
+    System.out.println();
     
     do {
       System.out.println(com.chess_game.elements.Constants.game_board);
@@ -137,7 +142,7 @@ public class ChessGame {
   
   public static Coordinate[] getMove(int i) {    
     //Pre: assumes i refers to current player number
-    //Post: returns the move the player wishes to make as coordinate array
+    //Post: returns the move the player wishes to make as coordinate array, or exits the program
     
     //user input of move
     String move = In.getString("\nPlayer " + String.valueOf(i) + ": Make Your Move: ");
@@ -151,7 +156,16 @@ public class ChessGame {
       System.exit(0);
     }
     else if (move.equals("rules")) {
-      //open rules
+      //Prints the rules to Standard Output
+      String[] file = File.read(System.getProperty("user.dir") + "\\com\\chess_game\\rules.txt");
+      File.println(file);
+      System.out.println();
+      
+      //Print out board again
+      System.out.println(com.chess_game.elements.Constants.game_board);
+      
+      //ask player for move again
+      getMove(i);
     }
     
     Coordinate[] c = new Coordinate[2];

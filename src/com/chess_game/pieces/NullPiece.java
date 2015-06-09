@@ -9,18 +9,18 @@ import com.chess_game.elements.Coordinate;
 
 public class NullPiece extends com.chess_game.pieces.Piece {
   
-  private char color;
-  
   public NullPiece() { 
     //Pre: None
     //Post: Creates NullPiece
-    color = 'n';
+    
+    super('n');
   }
   
   @Override
   public boolean isMoveValid(Coordinate c1, Coordinate c2) {
     //Pre: None
     //Post: Will always return false b/c player shouldn't have any control over a NullPiece, let alone know about it
+    
     return false;
   }
   
@@ -28,6 +28,7 @@ public class NullPiece extends com.chess_game.pieces.Piece {
   public String toString() {
     //Pre: None
     //Post: When objected printed, it's understandable by human
+    
     return ".";
   }
   
