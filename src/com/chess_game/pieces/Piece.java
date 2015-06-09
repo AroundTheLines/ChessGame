@@ -173,7 +173,7 @@ public class Piece {
       case "class com.chess_game.pieces.Pawn": //if the piece is a pawn
         if (Math.abs(Coordinate.subtract(c1, c2).getXComponent()) == 1 && Math.abs(Coordinate.subtract(c1, c2).getYComponent()) == 1)//if the pawn is going 1 box diagonally
           return false;//nothing can block it
-        else if (Math.abs(Coordinate.subtract(c1, c2).getYComponent()) == 1 && com.chess_game.elements.Constants.game_board.getPiece(c2).getColor() == 'n')//if the pawn is going up 1 box
+        else if (Math.abs(Coordinate.subtract(c1, c2).getYComponent()) == 1 && com.chess_game.elements.Constants.game_board.getPiece(c2).getColor() == 'n')//if the pawn is going up 1 box and there is nothing in the target box
           return false;//nothing can block it
         //if the pawn is white and it's going 2 boxes up and there's only a NullPiece in between
         else if (this.getColor() == 'W' && com.chess_game.elements.Constants.game_board.getPiece(Coordinate.add(c1, new Coordinate(0, -1))).getClass() == com.chess_game.pieces.NullPiece.class)
@@ -191,7 +191,7 @@ public class Piece {
         
         switch (direction) {
           case "Up"://if the direction of the piece is upward
-            for (int i = 0; i < Math.abs(c.getYComponent()); i++) {//check all boxes between target and current position
+            for (int i = 1; i < Math.abs(c.getYComponent()); i++) {//check all boxes between target and current position
               if (com.chess_game.elements.Constants.game_board.getBox(Coordinate.add(c1, new Coordinate(0, -1 * i))).getPiece().getClass() != com.chess_game.pieces.NullPiece.class) { //if there's anything but a null piece in between
                 System.out.println(str);
                 return true;//it's being blocked
@@ -199,7 +199,7 @@ public class Piece {
             }
             
           case "Down"://if the direction of the piece is downward
-            for (int i = 0; i < Math.abs(c.getYComponent()); i++) {//check all boxes between target and current position
+            for (int i = 1; i < Math.abs(c.getYComponent()); i++) {//check all boxes between target and current position
               if (com.chess_game.elements.Constants.game_board.getBox(Coordinate.add(c1, new Coordinate(0, i))).getPiece().getClass() != com.chess_game.pieces.NullPiece.class) { //if there's anything but a null piece in between
                 System.out.println(str);
                 return true;
@@ -207,7 +207,7 @@ public class Piece {
             }
             
           case "Right"://if the direction of the piece is rightward
-            for (int i = 0; i < Math.abs(c.getXComponent()); i++) {//check all boxes between target and current position
+            for (int i = 1; i < Math.abs(c.getXComponent()); i++) {//check all boxes between target and current position
               if (com.chess_game.elements.Constants.game_board.getBox(Coordinate.add(c1, new Coordinate(i, 0))).getPiece().getClass() != com.chess_game.pieces.NullPiece.class) { //if there's anything but a null piece in between
                 System.out.println(str);
                 return true;
@@ -215,7 +215,7 @@ public class Piece {
             }
             
           case "Left"://if the direction of the piece is leftward
-            for (int i = 0; i < Math.abs(c.getXComponent()); i++) {//check all boxes between target and current position
+            for (int i = 1; i < Math.abs(c.getXComponent()); i++) {//check all boxes between target and current position
               if (com.chess_game.elements.Constants.game_board.getBox(Coordinate.add(c1, new Coordinate(-1 * i, 0))).getPiece().getClass() != com.chess_game.pieces.NullPiece.class) { //if there's anything but a null piece in between
                 System.out.println(str);
                 return true;
@@ -223,7 +223,7 @@ public class Piece {
             }
           
           case "UpRight"://if the direction of the piece is uprightward
-            for (int i = 0; i < Math.abs(c.getXComponent()); i++) {//check all boxes between target and current position
+            for (int i = 1; i < Math.abs(c.getXComponent()); i++) {//check all boxes between target and current position
               if (com.chess_game.elements.Constants.game_board.getBox(Coordinate.add(c1, new Coordinate(i, -1 * i))).getPiece().getClass() != com.chess_game.pieces.NullPiece.class) { //if there's anything but a null piece in between
                 System.out.println(str);
                 return true;
@@ -231,7 +231,7 @@ public class Piece {
             }
           
           case "DownRight"://if the direction of the piece is downrightward
-            for (int i = 0; i < Math.abs(c.getXComponent()); i++) {//check all boxes between target and current position
+            for (int i = 1; i < Math.abs(c.getXComponent()); i++) {//check all boxes between target and current position
               if (com.chess_game.elements.Constants.game_board.getBox(Coordinate.add(c1, new Coordinate(i, i))).getPiece().getClass() != com.chess_game.pieces.NullPiece.class) { //if there's anything but a null piece in between
                 System.out.println(str);
                 return true;
@@ -239,7 +239,7 @@ public class Piece {
             }
           
           case "UpLeft"://if the direction of the piece is upleftward
-            for (int i = 0; i < Math.abs(c.getXComponent()); i++) {//check all boxes between target and current position
+            for (int i = 1; i < Math.abs(c.getXComponent()); i++) {//check all boxes between target and current position
               if (com.chess_game.elements.Constants.game_board.getBox(Coordinate.add(c1, new Coordinate(-1 * i, -1 * i))).getPiece().getClass() != com.chess_game.pieces.NullPiece.class) { //if there's anything but a null piece in between
                 System.out.println(str);
                 return true;
@@ -247,7 +247,7 @@ public class Piece {
             }
           
           case "DownLeft"://if the direction of the piece is downleftward
-            for (int i = 0; i < Math.abs(c.getXComponent()); i++) {//check all boxes between target and current position
+            for (int i = 1; i < Math.abs(c.getXComponent()); i++) {//check all boxes between target and current position
               if (com.chess_game.elements.Constants.game_board.getBox(Coordinate.add(c1, new Coordinate(-1 * i, i))).getPiece().getClass() != com.chess_game.pieces.NullPiece.class) { //if there's anything but a null piece in between
                 System.out.println(str);
                 return true;
