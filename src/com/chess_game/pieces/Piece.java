@@ -9,19 +9,31 @@ public class Piece {
   public Piece(){} //no-arg constuctor to avoid stupid errors
   
   public Piece(char color) { 
+    //Pre:
+    //Post:
     this.color = color;
     this.inGame = true;
   }
   
   public char getColor() {
+    //Pre:
+    //Post:
     return this.color;
   }
   
-  public boolean isPieceInGame() {return this.inGame;}
+  public boolean isPieceInGame() {
+    //Pre:
+    //Post:
+    return this.inGame;}
   
-  public void setPieceDead() {this.inGame = false;}
+  public void setPieceDead() {
+    //Pre:
+    //Post:
+    this.inGame = false;}
   
   public boolean isMoveValid(Coordinate c1, Coordinate c2) {
+    //Pre:
+    //Post:
     if (!isMoveInRange(c1, c2))
       return false;
     else if (isPathBlocked(c1, c2))
@@ -33,10 +45,12 @@ public class Piece {
   }
   
   public boolean isMoveInRange(Coordinate c1, Coordinate c2) {
+    //Pre:
+    //Post:
     
     Coordinate c = (Coordinate.subtract(c1, c2));
     String str = "Move is not in range. Try making a different move.";
-    Board game_board = com.chess_game.ChessGame.game_board;
+    Board game_board = com.chess_game.elements.Constants.game_board;
     
     switch (String.valueOf(this.getClass())) {
       case "class com.chess_game.pieces.Pawn": 
@@ -142,6 +156,9 @@ public class Piece {
   }
   
   public boolean isPathBlocked(Coordinate c1, Coordinate c2) {
+    //Pre:
+    //Post:
+    
     Coordinate c = (Coordinate.subtract(c1, c2));
     String str = "Move path is blocked. Try making a different move.";
     
@@ -153,11 +170,11 @@ public class Piece {
         return false;
          
       case "class com.chess_game.pieces.Pawn":
-        if (Math.abs(Coordinate.subtract(c1, c2).getYComponent()) == 1)
+        if (Math.abs(Coordinate.subtract(c1, c2).getXComponent()) == 1 && Math.abs(Coordinate.subtract(c1, c2).getYComponent()) == 1)
           return false;
-        else if (this.getColor() == 'W' && com.chess_game.ChessGame.game_board.getPiece(Coordinate.add(c1, new Coordinate(0, -1))).getClass() == com.chess_game.pieces.NullPiece.class)
+        else if (this.getColor() == 'W' && com.chess_game.elements.Constants.game_board.getPiece(Coordinate.add(c1, new Coordinate(0, -1))).getClass() == com.chess_game.pieces.NullPiece.class)
           return false;
-        else if (this.getColor() == 'B' && com.chess_game.ChessGame.game_board.getPiece(Coordinate.add(c1, new Coordinate(0, 1))).getClass() == com.chess_game.pieces.NullPiece.class)
+        else if (this.getColor() == 'B' && com.chess_game.elements.Constants.game_board.getPiece(Coordinate.add(c1, new Coordinate(0, 1))).getClass() == com.chess_game.pieces.NullPiece.class)
           return false;
         else {
           System.out.println(str);
@@ -170,7 +187,7 @@ public class Piece {
         switch (direction) {
           case "Up":
             for (int i = 0; i < Math.abs(c.getYComponent()); i++) {
-              if (com.chess_game.ChessGame.game_board.getBox(Coordinate.add(c1, new Coordinate(0, -1))).getPiece().getClass() != com.chess_game.pieces.NullPiece.class) {
+              if (com.chess_game.elements.Constants.game_board.getBox(Coordinate.add(c1, new Coordinate(0, -1))).getPiece().getClass() != com.chess_game.pieces.NullPiece.class) {
                 System.out.println(str);
                 return true;
               }
@@ -178,7 +195,7 @@ public class Piece {
             
           case "Down":
             for (int i = 0; i < Math.abs(c.getYComponent()); i++) {
-              if (com.chess_game.ChessGame.game_board.getBox(Coordinate.add(c1, new Coordinate(0, 1))).getPiece().getClass() != com.chess_game.pieces.NullPiece.class) {
+              if (com.chess_game.elements.Constants.game_board.getBox(Coordinate.add(c1, new Coordinate(0, 1))).getPiece().getClass() != com.chess_game.pieces.NullPiece.class) {
                 System.out.println(str);
                 return true;
               }
@@ -186,7 +203,7 @@ public class Piece {
             
           case "Right":
             for (int i = 0; i < Math.abs(c.getXComponent()); i++) {
-              if (com.chess_game.ChessGame.game_board.getBox(Coordinate.add(c1, new Coordinate(1, 0))).getPiece().getClass() != com.chess_game.pieces.NullPiece.class) {
+              if (com.chess_game.elements.Constants.game_board.getBox(Coordinate.add(c1, new Coordinate(1, 0))).getPiece().getClass() != com.chess_game.pieces.NullPiece.class) {
                 System.out.println(str);
                 return true;
               }
@@ -194,7 +211,7 @@ public class Piece {
             
           case "Left":
             for (int i = 0; i < Math.abs(c.getXComponent()); i++) {
-              if (com.chess_game.ChessGame.game_board.getBox(Coordinate.add(c1, new Coordinate(-1, 0))).getPiece().getClass() != com.chess_game.pieces.NullPiece.class) {
+              if (com.chess_game.elements.Constants.game_board.getBox(Coordinate.add(c1, new Coordinate(-1, 0))).getPiece().getClass() != com.chess_game.pieces.NullPiece.class) {
                 System.out.println(str);
                 return true;
               }
@@ -202,7 +219,7 @@ public class Piece {
           
           case "UpRight":
             for (int i = 0; i < Math.abs(c.getXComponent()); i++) {
-              if (com.chess_game.ChessGame.game_board.getBox(Coordinate.add(c1, new Coordinate(1, -1))).getPiece().getClass() != com.chess_game.pieces.NullPiece.class) {
+              if (com.chess_game.elements.Constants.game_board.getBox(Coordinate.add(c1, new Coordinate(1, -1))).getPiece().getClass() != com.chess_game.pieces.NullPiece.class) {
                 System.out.println(str);
                 return true;
               }
@@ -210,7 +227,7 @@ public class Piece {
           
           case "DownRight":
             for (int i = 0; i < Math.abs(c.getXComponent()); i++) {
-              if (com.chess_game.ChessGame.game_board.getBox(Coordinate.add(c1, new Coordinate(1, 1))).getPiece().getClass() != com.chess_game.pieces.NullPiece.class) {
+              if (com.chess_game.elements.Constants.game_board.getBox(Coordinate.add(c1, new Coordinate(1, 1))).getPiece().getClass() != com.chess_game.pieces.NullPiece.class) {
                 System.out.println(str);
                 return true;
               }
@@ -218,7 +235,7 @@ public class Piece {
           
           case "UpLeft":
             for (int i = 0; i < Math.abs(c.getXComponent()); i++) {
-              if (com.chess_game.ChessGame.game_board.getBox(Coordinate.add(c1, new Coordinate(-1, -1))).getPiece().getClass() != com.chess_game.pieces.NullPiece.class) {
+              if (com.chess_game.elements.Constants.game_board.getBox(Coordinate.add(c1, new Coordinate(-1, -1))).getPiece().getClass() != com.chess_game.pieces.NullPiece.class) {
                 System.out.println(str);
                 return true;
               }
@@ -226,7 +243,7 @@ public class Piece {
           
           case "DownLeft":
             for (int i = 0; i < Math.abs(c.getXComponent()); i++) {
-              if (com.chess_game.ChessGame.game_board.getBox(Coordinate.add(c1, new Coordinate(-1, 1))).getPiece().getClass() != com.chess_game.pieces.NullPiece.class) {
+              if (com.chess_game.elements.Constants.game_board.getBox(Coordinate.add(c1, new Coordinate(-1, 1))).getPiece().getClass() != com.chess_game.pieces.NullPiece.class) {
                 System.out.println(str);
                 return true;
               }
@@ -239,19 +256,24 @@ public class Piece {
   }
   
   public boolean isTargetBlocked(Coordinate c2) {
+    //Pre:
+    //Post:
     try {
-      if (this.getColor() == com.chess_game.ChessGame.game_board.getBox(c2).getPiece().getColor()) {
+      if (this.getColor() == com.chess_game.elements.Constants.game_board.getBox(c2).getPiece().getColor()) {
         System.out.println("Target is blocked. Try making a different move.");
         return true;
       }
       else
         return false;
     } catch (ArrayIndexOutOfBoundsException e) {
+      System.out.println("Move is not in range of the board");
       return false;//if the  array index is out of bounds, the target isn't blocked, it doesn't exist
     }
   }
   
   private static String getDirection(Coordinate c) {
+    //Pre:
+    //Post:
     int x, y;
     
     try {
@@ -298,6 +320,8 @@ public class Piece {
   }
   
   public String toString() {
+    //Pre:
+    //Post:
     return "piece type not specified";
   }
 }
