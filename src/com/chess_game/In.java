@@ -1,3 +1,6 @@
+/* Reads/takes in Standard Input 
+ */
+
 package com.chess_game;
 
 import java.io.*;

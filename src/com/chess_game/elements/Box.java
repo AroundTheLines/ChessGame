@@ -1,3 +1,6 @@
+/* Makes and does stuff with each individual box within the board(game_board) 
+ */
+
 package com.chess_game.elements;
 import com.chess_game.pieces.*;
 

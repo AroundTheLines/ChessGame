@@ -1,3 +1,7 @@
+/* I intended to make a JUnit Test for this assignment
+ * But tine didn't allow for...
+ */
+
 package com.chess_game;
 
 import com.chess_game.ChessGame;

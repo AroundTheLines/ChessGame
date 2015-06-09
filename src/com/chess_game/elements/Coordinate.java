@@ -1,3 +1,6 @@
+/* Make and do stuff with coordinates in (x, y) form 
+ */
+
 package com.chess_game.elements;
 import com.chess_game.pieces.*;
 

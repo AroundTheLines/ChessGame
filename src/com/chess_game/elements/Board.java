@@ -1,3 +1,6 @@
+/* This class makes and does stuff with game_board 
+ */
+
 package com.chess_game.elements;
 import com.chess_game.pieces.*;
 

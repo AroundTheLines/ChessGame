@@ -1,3 +1,8 @@
+/* The Knight Class
+ * Doesn't do much
+ * Constructor + toString method
+ */
+
 package com.chess_game.pieces;
 import com.chess_game.elements.*;
 

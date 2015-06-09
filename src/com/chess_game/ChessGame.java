@@ -1,4 +1,6 @@
-/*
+/* Chess game played in this class
+ * This is the class with the main method
+ * 
  * player 1 = white
  * player 2 = black
  */
@@ -48,22 +50,31 @@ public class ChessGame {
     //Pre: None
     //Post: Executes white's turn
     
+    //copies the instance of game_board from Constants.java
+    Board game_board = com.chess_game.elements.Constants.game_board;
+    
     try {
       Coordinate[] c;
       Boolean b = true;
       
       do {
-        c = getMove(1);//gets move
+        //gets move
+        c = getMove(1);
         
-        //first part of condition checks if selection of piece is the same color as the player. will make this more gracefull when the program actually works
+        //first part of condition checks if selection of piece is the same color as the player
         //second part of condition checks if user desired mover is valid
-        if (com.chess_game.elements.Constants.game_board.getPiece(c[0]).getColor() == 'W' && com.chess_game.elements.Constants.game_board.getPiece(c[0]).isMoveValid(c[0], c[1])) {
+        if (game_board.getPiece(c[0]).getColor() == 'W' && game_board.getPiece(c[0]).isMoveValid(c[0], c[1])) {
           b = false;
-          com.chess_game.elements.Constants.game_board.getBox(c[1]).getPiece().setPieceDead();//kills piece at the target
-          com.chess_game.elements.Constants.game_board.makeMove(c[0], c[1]);//makes move
+          
+          //kills piece at the target
+          game_board.getBox(c[1]).getPiece().setPieceDead();
+          
+          //makes move
+          game_board.makeMove(c[0], c[1]);
         }
         else
           System.out.println("That is not your piece. Try making a different move.");
+        
       } while (b);//keep doing above until user makes valid move
       
       
@@ -74,7 +85,7 @@ public class ChessGame {
       }
       
     } catch (ArrayIndexOutOfBoundsException e) {
-      //only supposed to be caught if user enters desired move/target that does not exist on the board
+      //if the user enters a move which would lead the piece off the board
       System.out.println("Move is out of range of board");
       player1Turn();
     }
@@ -85,26 +96,40 @@ public class ChessGame {
   public static void player2Turn() {
     //Pre: None
     //Post: Execute black's turn
+    
+    //copies the instance of game_board from Constants.java
+    Board game_board = com.chess_game.elements.Constants.game_board;
+    
     try {
       Coordinate[] c;
       Boolean b = true;
       
       do {
+        //gets move
         c = getMove(2);
         
-        if (com.chess_game.elements.Constants.game_board.getPiece(c[0]).getColor() == 'B' && com.chess_game.elements.Constants.game_board.getPiece(c[0]).isMoveValid(c[0], c[1])) {
+        
+        //first part of condition checks if selection of piece is the same color as the player
+        //second part of condition checks if user desired mover is valid
+        if (game_board.getPiece(c[0]).getColor() == 'B' && game_board.getPiece(c[0]).isMoveValid(c[0], c[1])) {
           b = false;
-          com.chess_game.elements.Constants.game_board.getBox(c[1]).getPiece().setPieceDead();
-          com.chess_game.elements.Constants.game_board.makeMove(c[0], c[1]);
+          
+          //kills piece at the target
+          game_board.getBox(c[1]).getPiece().setPieceDead();
+          
+          //makes move
+          game_board.makeMove(c[0], c[1]);
         }
       } while (b);
       
+      //checks if king is dead
       if (!com.chess_game.elements.Constants.pieces.get("white_king").isPieceInGame()) {
         System.out.println("Player 2 Wins");
         isGameDone = true;
       }
       
     } catch (ArrayIndexOutOfBoundsException e) {
+      //if the user enters a move which would lead the piece off the board
       System.out.println("Move is out of range of board");
       player2Turn();
     }
@@ -113,7 +138,9 @@ public class ChessGame {
   public static Coordinate[] getMove(int i) {    
     //Pre: assumes i refers to current player number
     //Post: returns the move the player wishes to make as coordinate array
-    String move = In.getString("\nPlayer " + String.valueOf(i) + ": Make Your Move: ");//user input of move
+    
+    //user input of move
+    String move = In.getString("\nPlayer " + String.valueOf(i) + ": Make Your Move: ");
     move = move.toLowerCase();
     
     if (move.equals("quit"))
@@ -121,7 +148,7 @@ public class ChessGame {
     else if (move.equals("forfeit")) {
       System.out.println("Current player has forfeited");
       System.out.println("Player " + 2/i + " wins");
-      System.exit(0);//change to end without killing
+      System.exit(0);
     }
     else if (move.equals("rules")) {
       //open rules

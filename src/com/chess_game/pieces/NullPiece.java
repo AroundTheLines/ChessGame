@@ -1,8 +1,9 @@
-package com.chess_game.pieces;
-
 /* A NullPiece occupies any box that is not occupied by any other piece
  * This makes checks and comparisons easier
+ * This also helps avoid NullPointerExceptions
  */
+
+package com.chess_game.pieces;
 
 import com.chess_game.elements.Coordinate;
 
