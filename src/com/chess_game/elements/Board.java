@@ -31,7 +31,7 @@ public class Board {
   }
   
   public Box getBox(Coordinate c){
-    //Pre: None
+    //Pre: Assumes coordinates are correct
     //Post: Returns a box with given coordinates
     return board[c.y][c.x];
   }

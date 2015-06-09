@@ -132,6 +132,7 @@ public class ChessGame {
     } catch (ArrayIndexOutOfBoundsException e) {
       //only supposed to be caught if user enters desired move/target that does not exist on the board
       System.out.println("Move is out of range of board");
+      e.printStackTrace();
       return player1Turn();
     }
   }
@@ -161,8 +162,10 @@ public class ChessGame {
       }
       else
         return false;
+      
     } catch (ArrayIndexOutOfBoundsException e) {
       System.out.println("Move is out of range of board");
+      e.printStackTrace();
       return player2Turn();
     }
   }
