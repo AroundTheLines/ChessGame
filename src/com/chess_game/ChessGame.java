@@ -181,7 +181,7 @@ public class ChessGame {
     }
     //else
     
-    //turns user input into coordinates we, programers, can work with, and stores it in an array
+    //turns user input into coordinates we, programmers, can work with, and stores it in an array
     Coordinate[] c = {new Coordinate(com.chess_game.elements.Constants.x_coord.get(move.charAt(0)) - 1, 8 - Integer.parseInt(move.substring(1, 2))), 
       new Coordinate(com.chess_game.elements.Constants.x_coord.get(move.charAt(2)) - 1, 8 - Integer.parseInt(move.substring(3, 4)))};
     
