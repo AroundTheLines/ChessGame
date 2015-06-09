@@ -13,8 +13,16 @@ public class Board {
   public void makeMove(Coordinate from, Coordinate to){
     //Pre: Assuming arguments passed are correct
     //Post: Makes a move
-      this.getBox(to).setPiece(this.getBox(from).getPiece());
-      this.getBox(from).setBoxEmpty();
+    if (this.getPiece(from).getClass() == Pawn.class) {
+      if (this.getPiece(from).getColor() == 'W' && to.getYComponent() == 0)
+        Pawn.valueOf(this.getPiece(from)).promotePawn();
+      else if (this.getPiece(from).getColor() == 'B' && to.getYComponent() == 7)
+        Pawn.valueOf(this.getPiece(from)).promotePawn();
+    }
+    
+    //the swap
+    this.getBox(to).setPiece(this.getBox(from).getPiece());
+    this.getBox(from).setBoxEmpty();
   }
   
   public Coordinate getPieceCoordinates(Piece p){

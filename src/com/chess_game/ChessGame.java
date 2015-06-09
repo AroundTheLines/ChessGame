@@ -11,6 +11,9 @@ import com.chess_game.elements.*;
 import java.util.*;
 
 public class ChessGame {
+  
+  public static boolean isGameDone = false;
+  
   public static void main(String[] args) {
     //Pre: None
     //Post: Runs the game
@@ -23,13 +26,17 @@ public class ChessGame {
     
     do {
       System.out.println(com.chess_game.elements.Constants.game_board);
-      if (player1Turn()) {
+      
+      player1Turn();
+      if (isGameDone) {
         System.out.println(com.chess_game.elements.Constants.game_board);
         break;
       }
       
       System.out.println(com.chess_game.elements.Constants.game_board);
-      if (player2Turn()) {
+      
+      player2Turn();
+      if (isGameDone) {
         System.out.println(com.chess_game.elements.Constants.game_board);
         break;
       }
@@ -37,7 +44,7 @@ public class ChessGame {
     
   }
     
-  public static boolean player1Turn() {
+  public static void player1Turn() {
     //Pre: None
     //Post: Executes white's turn
     
@@ -55,27 +62,27 @@ public class ChessGame {
           com.chess_game.elements.Constants.game_board.getBox(c[1]).getPiece().setPieceDead();//kills piece at the target
           com.chess_game.elements.Constants.game_board.makeMove(c[0], c[1]);//makes move
         }
+        else
+          System.out.println("That is not your piece. Try making a different move.");
       } while (b);//keep doing above until user makes valid move
       
       
       //checks if king is dead
       if (!com.chess_game.elements.Constants.pieces.get("black_king").isPieceInGame()) {
         System.out.println("Player 1 Wins");
-        return true;
+        isGameDone = true;
       }
-      else
-        return false;
+      
     } catch (ArrayIndexOutOfBoundsException e) {
       //only supposed to be caught if user enters desired move/target that does not exist on the board
       System.out.println("Move is out of range of board");
-      e.printStackTrace();
-      return player1Turn();
+      player1Turn();
     }
   }
   
   
   //mostly same to player1Turn with some adjustments
-  public static boolean player2Turn() {
+  public static void player2Turn() {
     //Pre: None
     //Post: Execute black's turn
     try {
@@ -94,15 +101,12 @@ public class ChessGame {
       
       if (!com.chess_game.elements.Constants.pieces.get("white_king").isPieceInGame()) {
         System.out.println("Player 2 Wins");
-        return true;
+        isGameDone = true;
       }
-      else
-        return false;
       
     } catch (ArrayIndexOutOfBoundsException e) {
       System.out.println("Move is out of range of board");
-      e.printStackTrace();
-      return player2Turn();
+      player2Turn();
     }
   }
   
@@ -110,20 +114,32 @@ public class ChessGame {
     //Pre: assumes i refers to current player number
     //Post: returns the move the player wishes to make as coordinate array
     String move = In.getString("\nPlayer " + String.valueOf(i) + ": Make Your Move: ");//user input of move
+    move = move.toLowerCase();
     
-    if (move.toLowerCase().equals("quit"))
+    if (move.equals("quit"))
       System.exit(0);
-    else if (move.toLowerCase().equals("forfeit")) {
+    else if (move.equals("forfeit")) {
       System.out.println("Current player has forfeited");
       System.out.println("Player " + 2/i + " wins");
       System.exit(0);//change to end without killing
     }
-    //else
+    else if (move.equals("rules")) {
+      //open rules
+    }
     
-    //turns user input into coordinates we, programmers, can work with, and stores it in an array
-    Coordinate[] c = {new Coordinate(com.chess_game.elements.Constants.x_coord.get(move.charAt(0)) - 1, 8 - Integer.parseInt(move.substring(1, 2))), 
-      new Coordinate(com.chess_game.elements.Constants.x_coord.get(move.charAt(2)) - 1, 8 - Integer.parseInt(move.substring(3, 4)))};
+    Coordinate[] c = new Coordinate[2];
     
-    return c;
+    try {
+      //turns user input into coordinates we, programmers, can work with, and stores it in an array
+      c[0] = new Coordinate(com.chess_game.elements.Constants.x_coord.get(move.charAt(0)) - 1, 8 - Integer.parseInt(move.substring(1, 2))); 
+      c[1] = new Coordinate(com.chess_game.elements.Constants.x_coord.get(move.charAt(2)) - 1, 8 - Integer.parseInt(move.substring(3, 4)));
+      
+    } catch (NullPointerException e) {
+      System.out.println("That is an invalid move. Enter the move in the correct format please.");
+      c = getMove(i);
+      
+    } finally {    
+      return c;
+    }
   }
 }
