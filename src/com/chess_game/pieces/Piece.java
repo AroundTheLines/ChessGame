@@ -198,7 +198,7 @@ public class Piece {
           return true;
         }
         
-      default: //if the piece is any other piece
+      default: //if the piece is any other piece (ie queen, rook or bishop)
         String direction = getDirection(c);
         
         switch (direction) {
@@ -209,9 +209,8 @@ public class Piece {
                 System.out.println(str);
                 return true;//it's being blocked
               }
-              else
-                return false;
             }
+            return false;
             
           case "Down"://if the direction of the piece is downward
             for (int i = 1; i < Math.abs(c.getYComponent()); i++) {//check all boxes between target and current position
@@ -220,9 +219,8 @@ public class Piece {
                 System.out.println(str);
                 return true;
               }
-              else
-                return false;
             }
+            return false;
             
           case "Right"://if the direction of the piece is rightward
             for (int i = 1; i < Math.abs(c.getXComponent()); i++) {//check all boxes between target and current position
@@ -231,9 +229,8 @@ public class Piece {
                 System.out.println(str);
                 return true;
               }
-              else
-                return false;
             }
+            return false;
             
           case "Left"://if the direction of the piece is leftward
             for (int i = 1; i < Math.abs(c.getXComponent()); i++) {//check all boxes between target and current position
@@ -242,9 +239,8 @@ public class Piece {
                 System.out.println(str);
                 return true;
               }
-              else
-                return false;
             }
+            return false;
           
           case "UpRight"://if the direction of the piece is uprightward
             for (int i = 1; i < Math.abs(c.getXComponent()); i++) {//check all boxes between target and current position
@@ -253,9 +249,8 @@ public class Piece {
                 System.out.println(str);
                 return true;
               }
-              else
-                return false;
             }
+            return false;
           
           case "DownRight"://if the direction of the piece is downrightward
             for (int i = 1; i < Math.abs(c.getXComponent()); i++) {//check all boxes between target and current position
@@ -264,9 +259,8 @@ public class Piece {
                 System.out.println(str);
                 return true;
               }
-              else
-                return false;
             }
+            return false;
           
           case "UpLeft"://if the direction of the piece is upleftward
             for (int i = 1; i < Math.abs(c.getXComponent()); i++) {//check all boxes between target and current position
@@ -275,9 +269,8 @@ public class Piece {
                 System.out.println(str);
                 return true;
               }
-              else
-                return false;
             }
+            return false;
           
           case "DownLeft"://if the direction of the piece is downleftward
             for (int i = 1; i < Math.abs(c.getXComponent()); i++) {//check all boxes between target and current position
@@ -286,9 +279,8 @@ public class Piece {
                 System.out.println(str);
                 return true;
               }
-              else
-                return false;
             }
+            return false;
             
           default://safety measure
             return false;//then nothing blocking the piece
